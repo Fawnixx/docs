@@ -1,5 +1,6 @@
 {
   "name": "PhatDaddy Development",
+  "theme": "maple",
   "logo": {
     "dark": "/logo/pdd-logo.png",
     "light": "/logo/pdd-logo.png"
