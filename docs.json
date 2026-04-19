@@ -35,39 +35,49 @@
             ]
           },
           {
+            "group": "PDD Advanced AIServices",
+            "pages": [
+              "pdd-advanced-aiservices/overview",
+              "pdd-advanced-aiservices/installation",
+              "pdd-advanced-aiservices/configuration",
+              "pdd-advanced-aiservices/services",
+              "pdd-advanced-aiservices/commands",
+              "pdd-advanced-aiservices/customization",
+              "pdd-advanced-aiservices/faq"
+            ]
+          },
+          {
             "group": "PDD Advanced Crafting",
             "pages": [
-              "pdd-crafting/overview",
-              "pdd-crafting/installation",
-              "pdd-crafting/configuration",
-              "pdd-crafting/admin-panel",
-              "pdd-crafting/recipes",
-              "pdd-crafting/xp-progression",
-              "pdd-crafting/portable-benches",
-              "pdd-crafting/faq"
+              "pdd-advanced-crafting/overview",
+              "pdd-advanced-crafting/installation",
+              "pdd-advanced-crafting/configuration",
+              "pdd-advanced-crafting/admin-panel",
+              "pdd-advanced-crafting/recipes",
+              "pdd-advanced-crafting/xp-progression",
+              "pdd-advanced-crafting/portable-benches",
+              "pdd-advanced-crafting/faq"
             ]
           },
           {
             "group": "PDD Advanced Elevators",
             "pages": [
-              "pdd-elevators/overview",
-              "pdd-elevators/installation",
-              "pdd-elevators/configuration",
-              "pdd-elevators/google-tts",
-              "pdd-elevators/customization",
-              "pdd-elevators/faq"
+              "pdd-advanced-elevators/overview",
+              "pdd-advanced-elevators/installation",
+              "pdd-advanced-elevators/configuration",
+              "pdd-advanced-elevators/google-tts",
+              "pdd-advanced-elevators/customization",
+              "pdd-advanced-elevators/faq"
             ]
           },
           {
-            "group": "PDD AI Services",
+            "group": "PDD Advanced Loyalty",
             "pages": [
-              "pdd-aiservices/overview",
-              "pdd-aiservices/installation",
-              "pdd-aiservices/configuration",
-              "pdd-aiservices/services",
-              "pdd-aiservices/commands",
-              "pdd-aiservices/customization",
-              "pdd-aiservices/faq"
+              "pdd-advanced-loyalty/overview",
+              "pdd-advanced-loyalty/installation",
+              "pdd-advanced-loyalty/configuration",
+              "pdd-advanced-loyalty/commands",
+              "pdd-advanced-loyalty/faq"
             ]
           },
           {
@@ -79,16 +89,6 @@
               "pdd-bridge/customization",
               "pdd-bridge/ai-tts",
               "pdd-bridge/exports"
-            ]
-          },
-          {
-            "group": "PDD Advanced Loyalty",
-            "pages": [
-              "pdd-advanced-loyalty/overview",
-              "pdd-advanced-loyalty/installation",
-              "pdd-advanced-loyalty/configuration",
-              "pdd-advanced-loyalty/commands",
-              "pdd-advanced-loyalty/faq"
             ]
           }
         ]
