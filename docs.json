@@ -19,7 +19,7 @@
   ],
   "topbarCtaButton": {
     "name": "Discord",
-    "url": "https://discord.gg/REPLACE_ME"
+    "url": "https://discord.gg/E7BUMksdKV"
   },
   "navigation": {
     "tabs": [
@@ -96,6 +96,6 @@
     ]
   },
   "footerSocials": {
-    "discord": "https://discord.gg/REPLACE_ME"
+    "discord": "https://discord.gg/E7BUMksdKV"
   }
 }
