@@ -1,0 +1,117 @@
+---
+title: "Configuration"
+description: "Full breakdown of config.lua options."
+---
+
+## Locale
+
+```lua
+Config.Locale = 'en'
+```
+
+Sets the active language for all UI strings.
+
+| Value | Language |
+|---|---|
+| `en` | English |
+| `es` | Spanish |
+| `fr` | French |
+| `de` | German |
+| `it` | Italian |
+| `pt` | Portuguese |
+| `ru` | Russian |
+| `ar` | Arabic |
+| `zh` | Chinese |
+| `ja` | Japanese |
+
+---
+
+## Branding
+
+```lua
+Config.Branding = {
+    ServerName  = "Your Server Name",
+    DiscordLink = "discord.gg/yourlink",
+    LogoImage   = "assets/server_logo.png"
+}
+```
+
+- **ServerName** — Displayed in the UI header
+- **DiscordLink** — Shown in UI footer/links
+- **LogoImage** — Path to your server logo inside `html/assets/`
+
+---
+
+## Inventory Image Path
+
+```lua
+Config.InventoryImagePath = "nui://qb-inventory/html/images/"
+```
+
+Points to your inventory script's image folder for item icons in the shop.
+
+| Inventory | Path |
+|---|---|
+| qb-inventory | `nui://qb-inventory/html/images/` |
+| qs-inventory | `nui://qs-inventory/html/images/` |
+
+---
+
+## Discord Integration
+
+```lua
+Config.Discord = {
+    BotToken           = "YOUR_DISCORD_BOT_TOKEN_HERE",
+    GuildID            = "YOUR_GUILD_ID_HERE",
+    TransactionWebhook = "YOUR_TRANSACTION_WEBHOOK_HERE",
+    AdminWebhook       = "YOUR_ADMIN_WEBHOOK_HERE"
+}
+```
+
+- **BotToken** — Your Discord bot token for role/guild lookups
+- **GuildID** — Your Discord server ID
+- **TransactionWebhook** — Webhook URL for purchase/transaction logs
+- **AdminWebhook** — Webhook URL for admin action logs
+
+---
+
+## Permissions
+
+```lua
+Config.Permissions = {
+    Licenses = {
+        "license:YOUR_LICENSE_HASH_HERE"
+    }
+}
+```
+
+CFX license hashes that have full admin access to the system. Add multiple entries for multiple admins.
+
+---
+
+## Admin Commands
+
+```lua
+Config.Commands = {
+    GiveVIP   = "givevip",
+    RemoveVIP = "removevip",
+    GivePT    = "givept",
+    RemovePT  = "removept"
+}
+```
+
+Rename any command to avoid conflicts with existing resources.
+
+---
+
+## Database Sweep
+
+```lua
+Config.Database = {
+    EnableSweep      = true,
+    MainPlayerTable  = "players",
+    IdentifierColumn = "citizenid"
+}
+```
+
+When enabled, automatically purges loyalty data for players who no longer exist in your main player table. Keeps your database clean.

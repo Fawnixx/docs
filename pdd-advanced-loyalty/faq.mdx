@@ -1,0 +1,58 @@
+---
+title: "FAQ"
+description: "Common questions about PDD Advanced Loyalty."
+---
+
+## General
+
+<AccordionGroup>
+  <Accordion title="Does this work with ESX or QBox?">
+    No. PDD Advanced Loyalty is built exclusively for **QBCore**. Other frameworks are not supported.
+  </Accordion>
+
+  <Accordion title="Do I need to import SQL manually?">
+    No. All database tables are created automatically when the resource starts for the first time.
+  </Accordion>
+
+  <Accordion title="Can I run this alongside other loyalty or VIP scripts?">
+    It depends on the other script. PDD Advanced Loyalty manages its own tables and does not modify core QBCore tables. Conflicts are only likely if another script uses identical command names — which can be resolved via `Config.Commands`.
+  </Accordion>
+</AccordionGroup>
+
+## Configuration
+
+<AccordionGroup>
+  <Accordion title="Where do I put my server logo?">
+    Drop your logo into `html/assets/` and update `Config.Branding.LogoImage` with the filename. You can also just rename your file to `server_logo.png` to replace the existing one.
+  </Accordion>
+
+  <Accordion title="How do I add multiple admins?">
+    Add each CFX license hash as a new entry in `Config.Permissions.Licenses`:
+    ```lua
+    Licenses = {
+        "license:HASH_ONE",
+        "license:HASH_TWO"
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="What's my CFX license hash?">
+    It's the identifier tied to your FiveM account. You can find it in your server console when you connect — it appears as `license:xxxxxxxx`.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The resource starts but nothing appears in-game">
+    Make sure `pdd_bridge` is started before `pdd_advanced-loyalty` in your `server.cfg` and that there are no errors in the server console on start.
+  </Accordion>
+
+  <Accordion title="Discord webhooks aren't firing">
+    Double-check your `BotToken`, `GuildID`, and webhook URLs in `config.lua`. Ensure your bot has the correct permissions in your Discord server.
+  </Accordion>
+
+  <Accordion title="I updated pdd_bridge but things are still broken">
+    Restart `pdd_bridge` first, then restart `pdd_advanced-loyalty`. Bridge-level changes require the bridge itself to be restarted — restarting only the consuming script won't apply bridge updates.
+  </Accordion>
+</AccordionGroup>

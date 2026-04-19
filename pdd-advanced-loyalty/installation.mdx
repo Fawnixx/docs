@@ -1,0 +1,67 @@
+---
+title: "Installation"
+description: "How to install PDD Advanced Loyalty on your server."
+---
+
+## Step 1 — Install Dependencies
+
+Make sure the following are installed and running before proceeding:
+
+- [`oxmysql`](https://github.com/overextended/oxmysql)
+- `pdd_bridge` *(included in your PDD purchase)*
+
+## Step 2 — Add the Resource
+
+Drop the `pdd_advanced-loyalty` folder into your server's `resources` directory.
+
+```
+resources/
+└── pdd_advanced-loyalty/
+```
+
+## Step 3 — Configure
+
+Open `config.lua` and fill in your values. At minimum you need:
+
+```lua
+Config.Branding = {
+    ServerName  = "Your Server Name",
+    DiscordLink = "discord.gg/yourlink",
+    LogoImage   = "assets/server_logo.png"
+}
+
+Config.Discord = {
+    BotToken            = "YOUR_DISCORD_BOT_TOKEN_HERE",
+    GuildID             = "YOUR_GUILD_ID_HERE",
+    TransactionWebhook  = "YOUR_TRANSACTION_WEBHOOK_HERE",
+    AdminWebhook        = "YOUR_ADMIN_WEBHOOK_HERE"
+}
+
+Config.Permissions = {
+    Licenses = {
+        "license:YOUR_LICENSE_HASH_HERE"
+    }
+}
+```
+
+<Warning>
+  Never share your `config.lua` publicly. It contains your Discord bot token and CFX license hash.
+</Warning>
+
+## Step 4 — Add to server.cfg
+
+Ensure the load order is correct:
+
+```
+ensure oxmysql
+ensure pdd_bridge
+ensure pdd_advanced-loyalty
+```
+
+## Step 5 — Start Your Server
+
+Tables are created automatically on first start. No manual SQL import needed.
+
+<Check>
+  If the resource starts without errors in the console, you're good to go.
+</Check>

@@ -1,0 +1,23 @@
+---
+title: "Commands"
+description: "All available commands in PDD Advanced Loyalty."
+---
+
+## Admin Commands
+
+All admin commands require your CFX license to be listed in `Config.Permissions.Licenses`.
+
+| Command | Usage | Description |
+|---|---|---|
+| `/givevip` | `/givevip [id] [days]` | Grant a player VIP status for X days |
+| `/removevip` | `/removevip [id]` | Remove VIP status from a player |
+| `/givept` | `/givept [id] [amount]` | Give a player playtime points |
+| `/removept` | `/removept [id] [amount]` | Remove playtime points from a player |
+
+<Info>
+  Command names are configurable in `config.lua` under `Config.Commands`.
+</Info>
+
+## Player Commands
+
+Players interact with the loyalty system through the NUI panel. There are no chat commands for players by default.

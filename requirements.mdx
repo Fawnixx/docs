@@ -1,0 +1,30 @@
+---
+title: "Requirements"
+description: "What you need before installing any PDD script."
+---
+
+## Framework
+
+All PDD scripts are built exclusively for **QBCore**. Other frameworks (ESX, QBox, etc.) are not supported.
+
+## Dependencies
+
+Every PDD script requires the following resources to be installed and started **before** any PDD resource:
+
+| Resource | Purpose |
+|---|---|
+| `oxmysql` | Database layer |
+| `pdd_bridge` | PDD centralized export layer |
+
+<Warning>
+  `pdd_bridge` is a required dependency for all PDD scripts. It must be started before any other PDD resource in your `server.cfg`.
+</Warning>
+
+## Database
+
+- MySQL-compatible database (MariaDB recommended)
+- All tables are created automatically on resource start — no manual SQL import required
+
+## Permissions
+
+Some features (admin commands, license-locked config) require your **CFX license hash** to be added to `config.lua`. See the configuration page for each script for details.
