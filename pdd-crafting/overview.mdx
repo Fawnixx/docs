@@ -1,0 +1,45 @@
+---
+title: "Overview"
+description: "What is PDD Advanced Crafting?"
+---
+
+# PDD Advanced Crafting
+
+**Version:** 1.0.0 | **Framework:** QBCore, QBX, ESX | **Author:** PhatDaddy Development LLC
+
+PDD Advanced Crafting is a fully modular, multi-framework crafting system with dynamic UI, XP progression, blueprint support, portable benches, dispatch integration, and a complete in-game admin panel. All configuration — recipes, locations, categories, settings — is managed live through the admin panel and saved to JSON. No restarts required for day-to-day changes.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Crafting Locations" icon="map-pin">
+    Fixed world locations with job, gang, item, license, Discord role, and time-lock access control. Fully configurable per location.
+  </Card>
+  <Card title="Portable Benches" icon="toolbox">
+    Item-spawned benches players can place in the world. Each bench has its own prop, recipe list, and access rules.
+  </Card>
+  <Card title="XP Progression" icon="chart-line">
+    Per-player crafting XP with configurable level cap, XP multiplier, and per-recipe XP rewards. Level gates on recipes.
+  </Card>
+  <Card title="Recipe System" icon="flask">
+    Categorized recipes with ingredients, craft times, result amounts, dispatch alerts, fail penalties, and material loss toggles.
+  </Card>
+  <Card title="Blueprint Support" icon="scroll">
+    Optional blueprint item requirement per recipe — players must have the blueprint in their inventory to unlock the craft.
+  </Card>
+  <Card title="Dispatch Integration" icon="radio">
+    Per-recipe configurable dispatch alerts with custom messages and trigger chance percentages.
+  </Card>
+  <Card title="Admin Panel" icon="screwdriver-wrench">
+    Full in-game admin UI for managing benches, recipes, categories, XP, settings, and logs — no file editing required.
+  </Card>
+  <Card title="Pager System" icon="bell">
+    Optional pager notification on craft start. Configurable position, duration, and optional item requirement.
+  </Card>
+</CardGroup>
+
+## Dependencies
+
+| Resource | Required |
+|---|---|
+| `pdd_bridge` | ✅ Yes — inventory, interaction, progress bar, money, phone, dispatch |

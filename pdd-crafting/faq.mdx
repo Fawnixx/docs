@@ -1,0 +1,46 @@
+---
+title: "FAQ"
+description: "Common questions about PDD Advanced Crafting."
+---
+
+<AccordionGroup>
+  <Accordion title="Where is all the configuration stored?">
+    Everything except `config.lua` static settings is stored in the `data/` folder as JSON files. The admin panel reads and writes these files directly. You should never manually edit them — changes made outside the admin panel will be overwritten on the next save.
+  </Accordion>
+
+  <Accordion title="Do I need to restart the resource after making changes in the admin panel?">
+    No. All admin panel changes take effect immediately and save automatically. No restart required.
+  </Accordion>
+
+  <Accordion title="How do I add a new bench location?">
+    Open `/craftadmin` → Locations tab → Add New Location. Fill in the coords, access rules, and recipe categories. The bench goes live immediately.
+  </Accordion>
+
+  <Accordion title="How do I add a new recipe?">
+    Open `/craftadmin` → Recipes tab → select the category → Add New Recipe. Fill in ingredients, craft time, XP, level requirement, and dispatch settings.
+  </Accordion>
+
+  <Accordion title="Can players craft at any bench or only specific ones?">
+    Each bench location and portable bench has its own recipe category list. A player can only craft recipes assigned to the bench they're at. Job, gang, item, and time restrictions further limit who can access each bench.
+  </Accordion>
+
+  <Accordion title="What happens to materials if a craft fails?">
+    By default, materials are returned on failure. If `Enable Material Loss` is turned on for that bench location, ingredients are consumed regardless of success or failure.
+  </Accordion>
+
+  <Accordion title="How do blueprints work?">
+    If a recipe has a blueprint set, the player must have that item in their inventory for the recipe to appear in the crafting menu. The blueprint is not consumed — it just gates access.
+  </Accordion>
+
+  <Accordion title="Can I use dirty money as a crafting ingredient?">
+    Yes. Enable `useBlackMoney` in the global settings. Once enabled, `black_money` can be added as an ingredient to any recipe via the admin panel.
+  </Accordion>
+
+  <Accordion title="The dispatch alert isn't firing.">
+    Check that `alertDispatch` is enabled on the recipe and that `dispatchChance` is set above 0. Also ensure `pdd_bridge` has dispatch properly configured for your server's dispatch script.
+  </Accordion>
+
+  <Accordion title="Admins can't access locked benches.">
+    Set `Config.AdminAccessAlways = true` in `config.lua`. This bypasses all bench restrictions — time locks, job/gang locks, item requirements — for players in `Config.Admins`.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,113 @@
+---
+title: "Configuration"
+description: "Full breakdown of config.lua for PDD Advanced Crafting."
+---
+
+## Discord Bot Token
+
+```lua
+Config.DiscordBotToken = ""
+```
+
+Used for Discord avatar fetching in logs. Leave blank to disable.
+
+---
+
+## Logging
+
+```lua
+Config.Logging = {
+    Enabled               = true,
+    System                = '',         -- 'discord' or 'fivemanage'
+    FivemanageToken       = '',
+    WebhookAdminActions   = '',
+    WebhookPublicCrafting = '',
+    UILogAutoDelete       = false,
+    UILogDeleteDays       = 30,
+    Colors = {
+        CraftSuccess = 65280,       -- Green
+        CraftFail    = 16711680,    -- Red
+        Security     = 16776960,    -- Yellow
+    }
+}
+```
+
+- **System** — `'discord'` for webhook logging, `'fivemanage'` for FiveManage integration
+- **WebhookAdminActions** — Receives admin events: XP changes, bench/recipe edits
+- **WebhookPublicCrafting** — Receives public events: orders, failures, exploit attempts
+
+---
+
+## Admins
+
+```lua
+Config.Admins = {
+    "license:YOUR_LICENSE_HASH_HERE",
+}
+```
+
+License identifiers with full admin panel access. Server-side only. Add multiple entries for multiple admins.
+
+```lua
+Config.AdminAccessAlways = true
+```
+
+When `true`, admins bypass all bench restrictions — time locks, job/gang/item locks, etc.
+
+---
+
+## Commands
+
+```lua
+Config.Commands = {
+    AddXP      = 'addcraftxp',
+    RemoveXP   = 'removecraftxp',
+    AdminPanel = 'craftadmin'
+}
+```
+
+Rename any command to avoid conflicts with existing resources.
+
+---
+
+## UI
+
+```lua
+Config.UI = {
+    Logo          = 'img/server_logo.png',
+    ServerName    = 'Your Server Name',
+    Description   = 'Underground Manufacturing',
+    DiscordLink   = 'discord.gg/yourlink',
+    InventoryPath = 'nui://qb-inventory/html/images/',
+    MoneyLabels = {
+        ['cash']        = 'Cash',
+        ['bank']        = 'Bank',
+        ['black_money'] = 'Dirty Money'
+    }
+}
+```
+
+- **Logo** — Path relative to `html/`. Drop your logo into `html/img/`
+- **InventoryPath** — Points to your inventory script's image folder for item icons
+
+| Inventory | Path |
+|---|---|
+| qb-inventory | `nui://qb-inventory/html/images/` |
+| qs-inventory | `nui://qs-inventory/html/images/` |
+
+---
+
+## Runtime Data
+
+The following are populated at runtime from `data/` JSON files and the admin panel. **Do not edit these in config.lua** — changes will be overwritten:
+
+```lua
+Config.CategoryLabels  = {}
+Config.Locations       = {}
+Config.PortableBenches = {}
+Config.Recipes         = {}
+Config.Locales         = {}
+Config.Pager           = {}
+```
+
+All of these are managed through the in-game admin panel.

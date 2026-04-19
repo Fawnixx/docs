@@ -1,0 +1,124 @@
+---
+title: "Admin Panel"
+description: "Managing crafting through the in-game admin panel."
+---
+
+## Accessing the Admin Panel
+
+Open the admin panel with `/craftadmin`. Restricted to players with a license listed in `Config.Admins`.
+
+Regular players can also access the crafting UI via `/craftadmin` if they're an admin, or by interacting with a configured bench location or portable bench in the world.
+
+---
+
+## Settings
+
+The global settings tab controls system-wide behavior. All changes save automatically to `data/crafting_settings.json`.
+
+| Setting | Description |
+|---|---|
+| XP Multiplier | Global multiplier applied to all XP rewards |
+| Max Level | Maximum crafting level players can reach |
+| Base XP | Starting XP threshold for level 1 |
+| Max Level XP | XP required per level at the cap |
+| Use Minigames | Master toggle for crafting minigames |
+| Use Portable Benches | Enable/disable portable bench system |
+| Use Black Money | Allow `black_money` as a crafting ingredient |
+| Use Target | Use ox_target/qb-target for bench interaction instead of proximity |
+| Clear Abandoned Orders | Minutes before an unfinished order is auto-cancelled |
+| Log Auto Delete | Auto-delete logs after X days |
+| Pager | Enable/disable the pager notification system |
+| Markers | Configure marker type, color, size, and draw distance |
+| Webhooks | Discord webhook URLs for admin and public crafting logs |
+
+---
+
+## Categories
+
+Manage crafting categories — the tabs shown in the crafting UI. Each category has a label and a Font Awesome icon.
+
+Default categories: `materials`, `items`, `tools`, `medical`, `illegal`, `ammo`, `weapons`
+
+You can add custom categories, rename existing ones, or disable them entirely.
+
+---
+
+## Recipes
+
+Add, edit, or delete recipes per category. Each recipe supports:
+
+| Field | Description |
+|---|---|
+| Label | Display name |
+| Description | Flavor text shown in the UI |
+| Category | Which category tab this recipe appears under |
+| Ingredients | List of items + amounts required |
+| Result Amount | How many of the item are produced |
+| Craft Time | Duration in milliseconds |
+| Required Level | Minimum crafting level to unlock |
+| XP Given | XP awarded on successful craft |
+| Blueprint | Optional blueprint item required to access the recipe |
+| Alert Dispatch | Whether to trigger a dispatch alert on craft |
+| Dispatch Chance | Percentage chance the alert fires (0–100) |
+| Dispatch Message | Message sent to dispatch |
+| Fail Penalty | Whether failing removes materials |
+| Image Override | Custom image filename for the recipe result |
+
+---
+
+## Locations (Fixed Benches)
+
+Add or edit fixed world bench locations. Each location supports:
+
+| Field | Description |
+|---|---|
+| Label | Display name |
+| Coords | World position (x, y, z, w) |
+| Icon | Font Awesome icon |
+| Recipes | Which recipe categories are available here |
+| Jobs Enabled | Restrict to specific job names |
+| Gangs Enabled | Restrict to specific gang names |
+| Items Enabled | Require specific item(s) in inventory |
+| Licenses Enabled | Require specific license(s) |
+| Discord Enabled | Restrict by Discord role ID |
+| Time Lock | Restrict to specific in-game hours |
+| Craft Animation | Animation to play during crafting |
+| Anim Min/Max Time | Random craft animation duration range |
+| Enable Material Loss | Consume materials even on failure |
+| Enable Fail Penalty | Apply XP penalty on failure |
+| Use Target | Use target system for this bench specifically |
+| Show Marker | Show a world marker at this location |
+| Zone Size | Size of the interaction zone |
+
+---
+
+## Portable Benches
+
+Configure item-spawned benches. Players place these in the world by using the designated item. Each portable bench has:
+
+| Field | Description |
+|---|---|
+| Label | Display name |
+| Item | Item name that spawns this bench |
+| Prop | GTA V prop model to spawn |
+| Recipes | Available recipe categories |
+| Access rules | Same job/gang/item/time options as fixed locations |
+| Show Marker | Whether a marker appears on the prop |
+| Use Target | Whether ox_target/qb-target is used for interaction |
+
+---
+
+## XP Management
+
+Admins can manually add or remove XP from players via commands or the admin panel.
+
+| Command | Usage | Description |
+|---|---|---|
+| `/addcraftxp` | `/addcraftxp [id] [amount]` | Add XP to a player |
+| `/removecraftxp` | `/removecraftxp [id] [amount]` | Remove XP from a player |
+
+---
+
+## Logs
+
+The logs tab displays admin actions and public crafting events with timestamps and player names. Logs can be auto-deleted after a configurable number of days.

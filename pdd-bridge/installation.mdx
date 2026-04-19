@@ -1,0 +1,55 @@
+---
+title: "Installation"
+description: "How to install pdd_bridge on your server."
+---
+
+## Step 1 — Add the Resource
+
+Drop the `pdd_bridge` folder into your `resources` directory. A dedicated subfolder is recommended to keep things organized:
+
+```
+resources/
+└── [pdd]/
+    └── pdd_bridge/
+```
+
+## Step 2 — Configure
+
+Open `config.lua` and fill in your values. At minimum:
+
+```lua
+Config.ServerWebsite = "https://yourwebsite.com"
+Config.ServerName    = "YourServerName"
+```
+
+If using AI or TTS features, add your API keys:
+
+```lua
+Config.Keys = {
+    ['openrouter'] = "YOUR_OPENROUTER_KEY",
+    ['google_tts'] = "YOUR_GOOGLE_TTS_KEY",
+}
+```
+
+## Step 3 — Add to server.cfg
+
+`pdd_bridge` **must start before all other PDD scripts.** No exceptions.
+
+```
+ensure pdd_bridge
+
+ensure pdd_advanced-loyalty
+ensure pdd_your_other_script
+```
+
+## Step 4 — Start Your Server
+
+On first start the bridge will auto-detect your framework, inventory, garage, and all other compatibility layers. Check your server console — if no errors appear, you're good.
+
+<Check>
+  If you see `[PDD Bridge] Framework detected: qbcore` (or similar) in your console, the bridge is running correctly.
+</Check>
+
+<Warning>
+  If you update `pdd_bridge`, always restart the bridge resource first — then restart your consuming PDD scripts. Restarting only a consuming script will not apply bridge updates.
+</Warning>

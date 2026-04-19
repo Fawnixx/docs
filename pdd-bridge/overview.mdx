@@ -1,0 +1,47 @@
+---
+title: "Overview"
+description: "What is pdd_bridge and why does it exist?"
+---
+
+# PDD Bridge
+
+**Version:** 1.3.0 | **Author:** PhatDaddy Development LLC
+
+`pdd_bridge` is the backbone of every PDD script. It sits between your server and all PhatDaddy Development resources, abstracting away framework differences so your scripts just work — without modification, regardless of your setup.
+
+Fix it once in the bridge. Fix it everywhere.
+
+## Why It Exists
+
+Every FiveM server runs a different stack. Different inventories, different notification systems, different garage scripts. Without a bridge layer, every PDD script would need to handle all of that individually — a maintenance nightmare.
+
+`pdd_bridge` handles all detection and compatibility automatically. PDD scripts call the bridge. The bridge figures out what you're running and does the right thing.
+
+## What It Handles
+
+<CardGroup cols={2}>
+  <Card title="Framework Detection" icon="layer-group">
+    Auto-detects QBCore, QBX, ESX, or custom setups.
+  </Card>
+  <Card title="Inventory Abstraction" icon="box">
+    Unified item give/remove/check across 8+ inventory scripts.
+  </Card>
+  <Card title="Notifications & UI" icon="bell">
+    Single export works with ox_lib, okokNotify, wasabi, qbcore, and more.
+  </Card>
+  <Card title="Garage System" icon="car">
+    10+ garage resources supported plus direct DB fallbacks.
+  </Card>
+  <Card title="AI Integration" icon="brain">
+    OpenRouter and Google Gemini support built in.
+  </Card>
+  <Card title="Text-to-Speech" icon="microphone">
+    Google Cloud TTS with caching to minimize API usage.
+  </Card>
+  <Card title="Medical / Police / Dispatch" icon="shield">
+    Unified exports across all major job scripts.
+  </Card>
+  <Card title="Custom Override Layer" icon="sliders">
+    `client_editable.lua` and `server_editable.lua` let you override any behavior without touching core files.
+  </Card>
+</CardGroup>

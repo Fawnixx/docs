@@ -1,0 +1,46 @@
+---
+title: "Overview"
+description: "What is PDD AI Services?"
+---
+
+# PDD AI Services
+
+**Version:** 2.0.0 | **Framework:** QBCore, QBX, ESX | **Author:** PhatDaddy Development LLC
+
+PDD AI Services dispatches AI-driven city service units when real players aren't on duty. When no EMS, mechanic, or taxi player is available, an AI unit responds instead — fully animated, fully configurable, no player required.
+
+Everything is managed through an in-game Samsung Galaxy Tab S-style NUI tablet. No config file editing required for day-to-day operations.
+
+## Services
+
+<CardGroup cols={2}>
+  <Card title="EMS" icon="truck-medical">
+    Ground ambulance, air rescue with zipline rappel, and underwater sub rescue. Revives downed players with configurable health thresholds.
+  </Card>
+  <Card title="Mechanic" icon="wrench">
+    On-site repair truck, fuel delivery, marine mechanic, and helicopter airlift. Flat-rate or vehicle-value-based pricing. Auto-dispatches tow to active player shops when available.
+  </Card>
+  <Card title="Transport" icon="car">
+    Standard taxi or luxury limo with distance-based pricing and server-side fare clamping.
+  </Card>
+  <Card title="Police Impound" icon="shield">
+    LEO-only tab. Dispatches a tow unit and opens a full impound form on arrival — price, hold time, authorization, and notes.
+  </Card>
+</CardGroup>
+
+## Key Features
+
+- **Pager alert system** — notifies real on-duty workers when AI dispatches so they can take over
+- **Fast Travel** — skip AI travel time with a configurable key (default: `E`)
+- **In-tablet admin panel** — live toggle and full config for all services, no file editing required
+- **Server-authoritative pricing** — client-sent prices are never trusted
+- **Jail detection** — blocks service access for incarcerated players
+- **Cancel refund system** — optional refund on cancel with anti-abuse cooldown
+
+## Dependencies
+
+| Resource | Required |
+|---|---|
+| `pdd_bridge` | ✅ Yes |
+| `ox_lib` | ✅ Yes — closest vehicle detection |
+| Framework ambulance job | Recommended — fires `hospital:client:Revive` for death-state clearing |

@@ -1,0 +1,119 @@
+---
+title: "Configuration"
+description: "config.lua settings and the in-game admin panel."
+---
+
+## config.lua (Static Settings)
+
+These settings require a manual file edit and resource restart to apply. Everything else is handled in-game.
+
+### Debug
+
+```lua
+Config.Debug = false
+```
+
+Enable for verbose console output when troubleshooting. Always set `false` in production.
+
+---
+
+### Locale
+
+```lua
+Config.Locale = "en"
+```
+
+Options: `en`, `es`, `fr`, `de`, `it`, `ja`, `pt`, `ru`, `zh`, `ar`
+
+---
+
+### Admin Licenses
+
+```lua
+Config.AdminLicenses = {
+    "license:YOUR_LICENSE_HASH_HERE",
+}
+```
+
+Players with a matching license can access the admin panel and use `/serviceadmin`. Add multiple entries for multiple admins.
+
+To find your license hash, run in the server console:
+```
+print(GetPlayerIdentifierByType(source, 'license'))
+```
+
+---
+
+### Fast Travel Key
+
+```lua
+Config.FastTravelKey = 38
+```
+
+Key code to skip AI dispatch travel time. Default is `38` (E key). Full key reference: [FiveM Controls](https://docs.fivem.net/docs/game-references/controls/)
+
+---
+
+### Keybind
+
+```lua
+Config.EnableKeybind = true
+```
+
+Registers `F6` as the default keybind to open the tablet. Set `false` to disable — the `/aiservices` command still works regardless.
+
+---
+
+### Service Jobs
+
+```lua
+Config.ServiceJobs = {
+    EMS      = { 'ambulance', 'fire' },
+    Taxi     = { 'taxi', 'uber' },
+    Mechanic = { 'mechanic', 'bennys', 'tunershop' },
+}
+```
+
+Job names counted toward each service's minimum player threshold. When enough real players with these jobs are on duty, AI dispatch is suppressed for that service.
+
+---
+
+### Police Tow Jobs
+
+```lua
+Config.PoliceTowJobs = {
+    'police',
+    'sheriff',
+}
+```
+
+Job names that unlock the Police Impound tab in the tablet.
+
+---
+
+## Runtime Config (In-Game Admin Panel)
+
+All of the following are managed through the in-game admin panel at `/serviceadmin` and saved automatically to `data/runtime_config.json`:
+
+| Setting | Description |
+|---|---|
+| Service enable/disable | Toggle any service on or off live |
+| Vehicle models | Spawn model for each service vehicle |
+| Ped models | NPC model for each service unit |
+| Prices | Flat rate or per-mile pricing per service |
+| Spawn distance | How far away the unit spawns |
+| Spawn delay | Time before unit appears after dispatch |
+| Impound lots | Coords and labels for police impound destinations |
+| Player shops | Mechanic drop-off locations tied to job names |
+| Minimum players | Threshold before AI suppression kicks in |
+| Fast travel toggle | Enable/disable fast travel globally |
+| Refund on cancel | Whether to refund the player on service cancellation |
+| Tablet command | Custom command name to open the tablet |
+
+<Info>
+  `DamageRequired` (minimum vehicle damage percentage before mechanic dispatch is allowed) is defined in `data/config_defaults.json` and applied on Restore Defaults. It is not surfaced in the admin panel and defaults to `0`.
+</Info>
+
+<Warning>
+  Do not manually edit `data/runtime_config.json`. It is overwritten by the admin panel. Manual edits will be lost on the next save.
+</Warning>

@@ -1,0 +1,141 @@
+---
+title: "Configuration"
+description: "Full breakdown of pdd_bridge config.lua."
+---
+
+## Debug Mode
+
+```lua
+Config.Debug = {
+    server  = false,  -- framework detection, player lookups, DB calls
+    client  = false,  -- mode detection and client export calls
+    exports = false,  -- every export call with params and return values
+}
+```
+
+Enable any of these when troubleshooting. Disable in production.
+
+---
+
+## Server Identification
+
+```lua
+Config.ServerWebsite = "https://yourwebsite.com"
+Config.ServerName    = "YourServerName"
+```
+
+Used by OpenRouter to identify your app in their analytics. Can be your Tebex store, Discord invite, or GitHub page — just needs to be a valid URL. Leaving it blank risks rate limiting.
+
+---
+
+## Locale
+
+```lua
+Config.Locale = 'en'
+```
+
+| Value | Language |
+|---|---|
+| `en` | English |
+| `es` | Spanish |
+| `fr` | French |
+| `de` | German |
+| `it` | Italian |
+| `pt` | Portuguese |
+| `ru` | Russian |
+| `zh` | Chinese |
+| `ja` | Japanese |
+| `ar` | Arabic |
+
+<Warning>
+  If you change locale from `en`, every NPC voice model in your script configs must match that language. Forcing an English voice model to speak Chinese will return silence from the Google TTS API.
+</Warning>
+
+---
+
+## Interaction Settings
+
+```lua
+Config.Interaction = "textui"       -- auto, textui, qbtarget, ox_target, custom
+Config.IfTextUI    = "ox_lib"       -- ox_lib, qb-menu, okok, custom
+```
+
+Set to `"auto"` to let the bridge detect what's installed, or force a specific resource.
+
+---
+
+## Compatibility Overrides
+
+```lua
+Config.Compatibility = {
+    ['framework']    = "auto",
+    ['inventory']    = "auto",
+    ['garage']       = "auto",
+    -- ... etc
+}
+```
+
+Every category defaults to `"auto"`. Override only if auto-detection is picking the wrong resource. Full list of accepted values per category:
+
+| Category | Accepted Values |
+|---|---|
+| `framework` | `auto`, `qbcore`, `qbx`, `esx`, `other` |
+| `inventory` | `auto`, `ox_inventory`, `qb-inventory`, `qs-inventory`, `ak47`, `codem`, `esx_inventory`, `other` |
+| `clothing` | `auto`, `illenium`, `fivem-appearance`, `qb-clothing`, `esx_skin`, `ak47`, `custom`, `default` |
+| `phone` | `auto`, `lb-phone`, `qs-smartphonepro`, `qb-phone`, `qbx_phone`, `okokphone`, `gksphone`, `esx_phone`, `custom`, `default` |
+| `ambulance` | `auto`, `qb-ambulancejob`, `qbx_medical`, `esx_ambulancejob`, `wasabi`, `ak47`, `osp`, `drc`, `custom`, `default` |
+| `mechanic` | `auto`, `qb-mechanicjob`, `qbx_mechanic`, `esx_mechanicjob`, `jg-mechanic`, `t1ger-mechanic`, `drc-mechanic`, `ak47`, `custom`, `default` |
+| `garage` | `auto`, `qb-garages`, `qbx_garages`, `qs-garages`, `ps-garages`, `wasabi_garage`, `jg-garages`, `codem-garage`, `drc_garage`, `ak47_garages`, `custom`, `default` |
+| `police` | `auto`, `qb-policejob`, `qbx_police`, `esx_policejob`, `wasabi_police`, `pscripts`, `custom`, `default` |
+| `fuel` | `auto`, `lc_fuel`, `ti_fuel`, `sna-fuel`, `cdn-fuel`, `qb-fuel`, `ox_fuel`, `qs-fuel`, `other` |
+| `keys` | `auto`, `qs-keys`, `qbx_vehiclekeys`, `esx_vehiclelock`, `jaksam`, `wasabi`, `ak47`, `default`, `other` |
+| `notification` | `auto`, `wasabi`, `drc`, `okokNotify`, `qbcore`, `qbx`, `esx`, `ox_lib`, `mNotify`, `other` |
+| `progress_bar` | `auto`, `ox_lib`, `progressbar`, `other` |
+| `dispatch` | `auto`, `qs-dispatch`, `ps-dispatch`, `cd_dispatch`, `rcore_dispatch`, `lation_dispatch`, `gs_dispatch`, `wasabi`, `qbcore`, `qbx`, `esx`, `custom`, `default` |
+| `gang` | `auto`, `qbcore`, `qbx`, `wasabi`, `ak47`, `esx`, `custom`, `default` |
+
+---
+
+## AI Settings
+
+```lua
+Config.AI = {
+    ['provider']    = "openrouter",
+    ['model']       = "meta-llama/llama-3.1-8b-instruct",
+    ['voice_model'] = "en-US-Standard-D",
+    ['use_cache']   = true,
+}
+```
+
+- **provider** — `openrouter` or `gemini`
+- **model** — any model slug supported by your provider
+- **voice_model** — Google TTS voice model (must match your locale)
+- **use_cache** — caches TTS responses to reduce repeated API calls
+
+---
+
+## API Keys
+
+```lua
+Config.Keys = {
+    ['gemini']      = "",
+    ['openrouter']  = "",
+    ['google_tts']  = "",
+}
+```
+
+Only fill in keys for services you're using.
+
+---
+
+## Logging
+
+```lua
+Config.Logs = {
+    enabled = true,
+    webhook = "",
+    name    = "PDD Bridge Logs",
+}
+```
+
+Paste a Discord webhook URL to enable bridge-level logging to your Discord server.

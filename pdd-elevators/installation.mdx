@@ -1,0 +1,37 @@
+---
+title: "Installation"
+description: "How to install PDD Advanced Elevators."
+---
+
+## Step 1 — Add the Resource
+
+Drop `pdd_elevators` into your resources directory:
+
+```
+resources/
+└── [pdd]/
+    └── pdd_elevators/
+```
+
+## Step 2 — Configure
+
+Open `config.lua` and set your framework, targeting system, and elevator shafts. If using AI Voice, add your Google Cloud TTS API key.
+
+See the [Configuration](/pdd-elevators/configuration) page for full details.
+
+## Step 3 — Add to server.cfg
+
+Must load after your framework and `ox_lib`:
+
+```
+ensure ox_lib
+ensure pdd_elevators
+```
+
+## Step 4 — Start Your Server
+
+No SQL import required. The script has no database tables.
+
+<Check>
+  Open the tablet in-game and interact with a configured elevator to verify everything is working.
+</Check>

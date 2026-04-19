@@ -1,0 +1,42 @@
+---
+title: "Overview"
+description: "What is PDD Advanced Elevators?"
+---
+
+# PDD Advanced Elevators
+
+**Version:** 1.0.0 | **Framework:** QBCore, QBX, ESX | **Author:** PhatDaddy Development LLC
+
+PDD Advanced Elevators is a fully modular, multi-framework elevator system. This isn't a teleport script — it's a complete elevator experience with AI voice announcements, job/item/money access control, minigame security hacking, dynamic UI menus, and map blips.
+
+**100% standalone.** No external bridges or additional dependencies required to run core logic.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="AI Voice Announcements" icon="microphone">
+    Google Cloud TTS dynamically generates realistic elevator announcements per floor. Fully configurable voice model and error message.
+  </Card>
+  <Card title="Access Control" icon="lock">
+    Per-elevator and per-floor restrictions by job, inventory item, or money. Items and money can be destroyed on minigame failure.
+  </Card>
+  <Card title="Minigame Security" icon="gamepad">
+    Require players to complete a hack before the elevator opens. Supports 10+ minigame scripts with per-elevator difficulty settings.
+  </Card>
+  <Card title="Dynamic UI" icon="display">
+    ox_lib and qb-menu support out of the box. Custom menu hook available via `client_editable.lua`.
+  </Card>
+  <Card title="Map Blips" icon="location-dot">
+    Optional job-controlled blips with configurable sprite, color, scale, and display distance.
+  </Card>
+  <Card title="Sound Effects" icon="volume-high">
+    interact-sound, xsound, or Google TTS. Custom sound hook available.
+  </Card>
+</CardGroup>
+
+## Dependencies
+
+| Resource | Required |
+|---|---|
+| `ox_lib` | ✅ Yes |
+| Framework (QBCore / QBX / ESX) | Recommended — auto-detected |

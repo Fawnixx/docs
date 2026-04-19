@@ -1,0 +1,89 @@
+---
+title: "Recipes & Categories"
+description: "How recipes and categories work in PDD Advanced Crafting."
+---
+
+## Categories
+
+Categories are the tabs shown in the crafting UI. Each recipe belongs to one category.
+
+Default categories shipped with the script:
+
+| Key | Label | Icon |
+|---|---|---|
+| `materials` | Materials | `fas fa-recycle` |
+| `items` | Items | `fas fa-box` |
+| `tools` | Tools | `fas fa-wrench` |
+| `medical` | Medical | `fas fa-briefcase-medical` |
+| `illegal` | Illegal | `fas fa-skull-crossbones` |
+| `ammo` | Ammunition | `fas fa-box-open` |
+| `weapons` | Restricted Weapons | `fas fa-gun` |
+
+Categories are managed entirely through the admin panel and saved to `data/crafting_categories.json`.
+
+---
+
+## Recipes
+
+Recipes are grouped by category and managed through the admin panel. They save to `data/crafting_recipes.json`.
+
+### Default Recipe Examples
+
+**Materials**
+| Recipe | Level | Ingredients | Result |
+|---|---|---|---|
+| Plastic | 0 | 2x Metal Scrap | 1x Plastic |
+| Rubber | 0 | 3x Metal Scrap | 1x Rubber |
+| Steel | 2 | 5x Metal Scrap | 1x Steel |
+
+**Medical**
+| Recipe | Level | Ingredients | Result |
+|---|---|---|---|
+| Bandage | 1 | 2x Plastic, 3x Rubber | 1x Bandage |
+| Painkillers | 2 | 2x Plastic, 2x Aluminum Powder | 2x Painkillers |
+| First Aid Kit | 3 | 3x Bandage, 2x Plastic, 1x Rubber | 1x First Aid Kit |
+
+**Tools**
+| Recipe | Level | Ingredients | Result |
+|---|---|---|---|
+| Electronic Kit | 2 | 4x Copper, 3x Plastic | 1x Electronic Kit |
+| Drill | 5 | 10x Metal Scrap, 5x Plastic | 1x Drill |
+| Thermite | 8 | 3x Steel, 4x Aluminum Powder, 2x Copper | 1x Thermite |
+
+**Illegal**
+| Recipe | Level | Ingredients | Result |
+|---|---|---|---|
+| Lockpick | 1 | 4x Metal Scrap, 2x Plastic | 1x Lockpick |
+| Advanced Lockpick | 5 | 2x Lockpick, 2x Steel, 1x Rubber | 1x Advanced Lockpick |
+
+**Weapons** *(dispatch alert enabled)*
+| Recipe | Level | Ingredients | Result |
+|---|---|---|---|
+| Pistol | 15 | 25x Metal Scrap, 10x Plastic, $50k Dirty Money | 1x Pistol |
+| Sawn-Off Shotgun | 20 | 30x Metal Scrap, 5x Steel, 4x Rubber, $75k Dirty Money | 1x Sawn-Off Shotgun |
+| SMG | 25 | 40x Metal Scrap, 8x Steel, 15x Plastic, $100k Dirty Money | 1x SMG |
+
+---
+
+## Blueprints
+
+Any recipe can optionally require a blueprint item in the player's inventory before the recipe is visible or craftable. Set the `blueprint` field to the item name in the recipe config.
+
+---
+
+## Dispatch Alerts
+
+Recipes with `alertDispatch = true` have a configurable chance to trigger a dispatch alert when crafted. The alert message and trigger percentage are set per recipe in the admin panel.
+
+Weapon recipes default to 75–85% dispatch chance. Material and medical recipes default to 0%.
+
+---
+
+## Fail Penalty & Material Loss
+
+Per recipe and per location, you can configure:
+
+- **Fail Penalty** — Applies an XP penalty when a craft fails
+- **Material Loss** — Consumes ingredients even when the craft fails
+
+Both default to `false` and are configured independently per bench location in the admin panel.

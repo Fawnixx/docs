@@ -1,0 +1,91 @@
+---
+title: "AI & TTS Setup"
+description: "Setting up OpenRouter AI and Google Cloud Text-to-Speech."
+---
+
+## OpenRouter (AI)
+
+OpenRouter gives you access to hundreds of AI models — Llama, Claude, GPT, and more — for fractions of a penny per request.
+
+### Setup
+
+1. Create an account at [openrouter.ai](https://openrouter.ai/) and generate an API key under **Profile → Keys**
+2. Paste the key into `config.lua`:
+
+```lua
+Config.Keys = {
+    ['openrouter'] = "YOUR_KEY_HERE",
+}
+```
+
+3. Set your provider and model:
+
+```lua
+Config.AI = {
+    ['provider'] = "openrouter",
+    ['model']    = "meta-llama/llama-3.1-8b-instruct",
+}
+```
+
+4. Fill in your server identity — OpenRouter uses this to identify your requests:
+
+```lua
+Config.ServerWebsite = "https://yourwebsite.com"
+Config.ServerName    = "YourServerName"
+```
+
+<Warning>
+  Leaving `ServerWebsite` and `ServerName` blank risks rate limiting or blocks from OpenRouter.
+</Warning>
+
+---
+
+## Google Cloud TTS
+
+Google's free tier covers roughly 1–4 million characters per month depending on the voice model. Most servers never hit a charge.
+
+### Setup
+
+1. Go to [console.cloud.google.com](https://console.cloud.google.com/), create a new project, and enable the **Cloud Text-to-Speech API**
+2. Under **APIs & Services → Credentials**, create an API key and copy it
+3. Paste the key into `config.lua`:
+
+```lua
+Config.Keys = {
+    ['google_tts'] = "YOUR_KEY_HERE",
+}
+```
+
+4. Set your voice model to match your locale:
+
+```lua
+Config.AI = {
+    ['voice_model'] = "en-US-Standard-D",
+    ['use_cache']   = true,
+}
+```
+
+<Note>
+  Google requires a billing account to enable APIs, but the free tier is generous enough that most servers never see a charge.
+</Note>
+
+---
+
+## Voice Model Reference
+
+| Language | Standard Voices | Neural/Studio Voices |
+|---|---|---|
+| English (`en`) | `en-US-Standard-D`, `en-US-Standard-F` | `en-US-Neural2-D`, `en-US-Studio-O` |
+| Spanish (`es`) | `es-ES-Standard-A`, `es-US-Standard-B` | `es-ES-Neural2-A`, `es-US-Neural2-B` |
+| French (`fr`) | `fr-FR-Standard-A`, `fr-CA-Standard-B` | `fr-FR-Neural2-A`, `fr-CA-Neural2-B` |
+| German (`de`) | `de-DE-Standard-B`, `de-DE-Standard-D` | `de-DE-Neural2-B`, `de-DE-Neural2-D` |
+| Italian (`it`) | `it-IT-Standard-A`, `it-IT-Standard-C` | `it-IT-Neural2-A`, `it-IT-Neural2-C` |
+| Portuguese (`pt`) | `pt-BR-Standard-A`, `pt-PT-Standard-B` | `pt-BR-Neural2-A`, `pt-PT-Neural2-B` |
+| Russian (`ru`) | `ru-RU-Standard-A`, `ru-RU-Standard-D` | `ru-RU-Wavenet-A`, `ru-RU-Wavenet-D` |
+| Chinese (`zh`) | `cmn-CN-Standard-A`, `cmn-CN-Standard-C` | `cmn-CN-Wavenet-A`, `cmn-CN-Wavenet-C` |
+| Japanese (`ja`) | `ja-JP-Standard-B`, `ja-JP-Standard-C` | `ja-JP-Neural2-B`, `ja-JP-Neural2-C` |
+| Arabic (`ar`) | `ar-XA-Standard-A`, `ar-XA-Standard-B` | `ar-XA-Wavenet-A`, `ar-XA-Wavenet-B` |
+
+<Warning>
+  The voice model **must match your locale**. If `Config.Locale = 'zh'` but your voice model is `en-US-Standard-D`, the Google API will return silence.
+</Warning>

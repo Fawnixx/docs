@@ -1,0 +1,49 @@
+---
+title: "Installation"
+description: "How to install PDD AI Services."
+---
+
+## Step 1 — Add the Resource
+
+Drop `pdd_advanced-aiservices` into your resources directory:
+
+```
+resources/
+└── [pdd]/
+    ├── pdd_bridge/
+    └── pdd_advanced-aiservices/
+```
+
+## Step 2 — Configure `config.lua`
+
+Open `config.lua` and at minimum add your license hash:
+
+```lua
+Config.AdminLicenses = {
+    "license:YOUR_LICENSE_HASH_HERE",
+}
+```
+
+Everything else (prices, vehicles, distances, thresholds) is configured in-game via the admin panel.
+
+## Step 3 — Add to server.cfg
+
+Load order matters. `pdd_bridge` and `ox_lib` must start first:
+
+```
+ensure ox_lib
+ensure pdd_bridge
+ensure pdd_advanced-aiservices
+```
+
+## Step 4 — Start Your Server
+
+On first start the script loads defaults from `data/config_defaults.json`. No SQL import needed — there are no database tables.
+
+<Check>
+  If the resource starts without console errors, open the tablet in-game with `/aiservices` or `F6` to verify everything is working.
+</Check>
+
+## Step 5 — Configure In-Game
+
+Use `/serviceadmin` (admin-only) to open the admin panel and configure all services live. Changes save automatically to `data/runtime_config.json`.

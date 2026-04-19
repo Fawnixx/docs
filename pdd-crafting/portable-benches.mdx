@@ -1,0 +1,47 @@
+---
+title: "Portable Benches"
+description: "How portable item-spawned crafting benches work."
+---
+
+## Overview
+
+Portable benches are crafting stations that players spawn in the world by using a specific item. Each bench spawns a GTA V prop at the player's location and opens as an interactive crafting station.
+
+Portable benches are enabled globally via the `usePortableBenches` setting in the admin panel.
+
+---
+
+## Default Portable Benches
+
+| Bench | Item | Prop | Access |
+|---|---|---|---|
+| Field Workshop | `portable_workbench` | `prop_tool_bench01` | Open to all |
+| Ballas Workshop | `ballas_bench_kit` | `prop_toolchest_01` | Ballas gang only |
+| Police Evidence Bench | `police_evidence_kit` | `prop_toolchest_03` | Police/Sheriff job |
+| Heist Field Kit | `security_case` | `prop_cash_case_01` | Open to all |
+
+---
+
+## Portable Bench Configuration
+
+Each portable bench is configured in the admin panel and saved to `data/crafting_portable_benches.json`.
+
+| Field | Description |
+|---|---|
+| Label | Display name shown when interacting |
+| Item | Item name in the player's inventory that spawns this bench |
+| Prop | GTA V prop model spawned in the world |
+| Recipes | Which recipe categories are available at this bench |
+| Jobs Enabled | Restrict to specific job names |
+| Gangs Enabled | Restrict to specific gang names |
+| Items Enabled | Require additional item(s) in inventory |
+| Licenses Enabled | Require specific license(s) |
+| Discord Enabled | Restrict by Discord role ID |
+| Time Lock | Restrict to specific in-game hours |
+| Use Target | Use ox_target/qb-target for interaction |
+| Show Marker | Show a marker on the spawned prop |
+| Craft Animation | Animation played during crafting |
+
+<Info>
+  Portable benches do not persist across server restarts. The prop and bench session exist only for the duration the player keeps it active.
+</Info>

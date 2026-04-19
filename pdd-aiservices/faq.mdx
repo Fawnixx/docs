@@ -1,0 +1,38 @@
+---
+title: "FAQ"
+description: "Common questions about PDD AI Services."
+---
+
+<AccordionGroup>
+  <Accordion title="Does this replace my EMS/mechanic players?">
+    No. AI units only dispatch when the minimum player threshold for that service is not met. Real players always take priority. When a real worker is on duty, AI dispatch is suppressed for that service.
+  </Accordion>
+
+  <Accordion title="Can real players take over an active AI dispatch?">
+    Yes. The pager alert system notifies on-duty players when an AI unit is dispatched. They can accept the call and respond manually.
+  </Accordion>
+
+  <Accordion title="Where do I change prices?">
+    All prices are managed through the in-game admin panel (`/serviceadmin`). Changes save automatically — no file editing or restarts required.
+  </Accordion>
+
+  <Accordion title="Why is the tablet not opening?">
+    Check that `pdd_bridge` and `ox_lib` are both started before `pdd_advanced-aiservices` in your `server.cfg`. Also verify there are no errors in the server console on resource start.
+  </Accordion>
+
+  <Accordion title="A player got a refund after abusing cancel — how do I prevent this?">
+    The script enforces a 10-second minimum before a cancel refund is eligible. This prevents the free-service loop. The refund on cancel feature can also be disabled entirely in the admin panel.
+  </Accordion>
+
+  <Accordion title="Can I change the tablet command from /aiservices?">
+    Yes — it's configurable in the in-game admin panel under general settings. No file edit needed.
+  </Accordion>
+
+  <Accordion title="The Police Impound tab isn't showing for my officer.">
+    Make sure the officer's job name is listed in `Config.PoliceTowJobs` in `config.lua`. This requires a file edit and resource restart.
+  </Accordion>
+
+  <Accordion title="Can I add my own vehicle models to a service?">
+    Yes — all vehicle and ped models are configurable per service type in the admin panel. Enter any valid GTA V spawn name.
+  </Accordion>
+</AccordionGroup>

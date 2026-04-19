@@ -1,0 +1,61 @@
+---
+title: "Installation"
+description: "How to install PDD Advanced Crafting."
+---
+
+## Step 1 — Add the Resource
+
+Drop `pdd_advanced-crafting` into your resources directory:
+
+```
+resources/
+└── [pdd]/
+    ├── pdd_bridge/
+    └── pdd_advanced-crafting/
+```
+
+## Step 2 — Configure config.lua
+
+Open `config.lua` and fill in the essentials:
+
+```lua
+Config.Admins = {
+    "license:YOUR_LICENSE_HASH_HERE",
+}
+
+Config.UI = {
+    Logo          = 'img/server_logo.png',
+    ServerName    = 'Your Server Name',
+    Description   = 'Underground Manufacturing',
+    DiscordLink   = 'discord.gg/yourlink',
+    InventoryPath = 'nui://qb-inventory/html/images/',
+}
+```
+
+Drop your server logo into `html/img/` and update `Config.UI.Logo` with the filename.
+
+## Step 3 — Configure pdd_bridge
+
+`pdd_bridge` must have the following compatibility layers configured for crafting to function:
+
+- `inventory`
+- `interaction`
+- `progress_bar`
+- `money`
+- `phone`
+- `dispatch`
+
+## Step 4 — Add to server.cfg
+
+```
+ensure pdd_bridge
+ensure pdd_advanced-crafting
+```
+
+## Step 5 — Start Your Server
+
+No SQL import required. All data is stored in the `data/` JSON files. On first start, the script loads defaults from the included JSON files.
+
+<Check>
+  Open `/craftadmin` in-game to verify the admin panel loads and your license has access.
+</Check>

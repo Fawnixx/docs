@@ -1,0 +1,56 @@
+---
+title: "Google TTS Setup"
+description: "Setting up Google Cloud Text-to-Speech for elevator voice announcements."
+---
+
+Google Cloud TTS generates realistic elevator floor announcements dynamically. The free tier covers roughly 1–4 million characters per month depending on the voice model — most servers never see a charge.
+
+## Step 1 — Create a Google Cloud Project
+
+1. Go to [console.cloud.google.com](https://console.cloud.google.com/)
+2. Log in with your Google account
+3. Click the **Project Dropdown** at the top left → **New Project**
+4. Name it something recognizable (e.g. `MyServer-TTS`) and click **Create**
+
+## Step 2 — Enable the Text-to-Speech API
+
+1. Make sure your new project is selected at the top
+2. Search for **Cloud Text-to-Speech API** in the search bar and select it
+3. Click the blue **Enable** button
+
+<Note>
+  Google requires an active billing account to enable APIs. You'll need to attach a card, but the free tier handles normal server traffic without charge.
+</Note>
+
+## Step 3 — Generate Your API Key
+
+1. Open the left navigation menu → **APIs & Services** → **Credentials**
+2. Click **+ CREATE CREDENTIALS** → **API Key**
+3. Copy the generated key
+
+## Step 4 — Add to config.lua
+
+```lua
+Config.SoundEffects = 'google-voice'
+
+Config.AI = {
+    Enabled    = true,
+    APIKey     = "YOUR_KEY_HERE",
+    VoiceModel = "en-US-Neural2-F",
+    ErrorText  = "I'm sorry, you lack the credentials to use this elevator.",
+}
+```
+
+<Warning>
+  Never share your `config.lua` publicly — it contains your Google API key.
+</Warning>
+
+## Disabling AI Voice
+
+If you prefer traditional sound effects instead, set:
+
+```lua
+Config.SoundEffects = 'interact-sound'  -- or 'xsound' or false
+```
+
+Place the included `.ogg` files in the appropriate directory for your chosen sound script and update `Config.CustomSounds` with the correct filenames.

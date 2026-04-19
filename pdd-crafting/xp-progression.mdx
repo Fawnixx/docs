@@ -1,0 +1,55 @@
+---
+title: "XP & Progression"
+description: "How the crafting XP and level system works."
+---
+
+## Overview
+
+Every player has a crafting XP total stored in `data/crafting_xp.json` keyed by their license identifier. XP is earned by successfully completing crafts and is used to unlock higher-tier recipes.
+
+---
+
+## XP Settings
+
+Configured in the admin panel under Settings:
+
+| Setting | Default | Description |
+|---|---|---|
+| XP Multiplier | `1.5` | Global multiplier applied to all XP rewards |
+| Base XP | `50` | XP required to reach level 1 |
+| Max Level | `100` | Maximum level players can reach |
+| Max Level XP | `700` | XP required per level at the cap |
+
+---
+
+## Level Gates
+
+Each recipe has a `requiredLevel` field. Players below that level cannot see or craft that recipe.
+
+Example level thresholds from the default recipe set:
+
+| Level | Unlocks |
+|---|---|
+| 0 | Plastic, Rubber |
+| 1 | Bandage, Repair Kit, Lockpick |
+| 2 | Steel, Painkillers, Electronic Kit |
+| 5 | Drill, Advanced Lockpick, Advanced Repair Kit |
+| 7 | Shotgun Shells |
+| 8 | Thermite |
+| 10 | Rifle Ammo |
+| 15 | Pistol |
+| 20 | Sawn-Off Shotgun |
+| 25 | SMG |
+
+---
+
+## Admin XP Commands
+
+Admins can manually adjust player XP:
+
+| Command | Usage |
+|---|---|
+| `/addcraftxp [id] [amount]` | Add XP to a player |
+| `/removecraftxp [id] [amount]` | Remove XP from a player |
+
+Command names are configurable in `config.lua` under `Config.Commands`.

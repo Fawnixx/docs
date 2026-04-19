@@ -1,0 +1,43 @@
+---
+title: "FAQ"
+description: "Common questions about PDD Advanced Elevators."
+---
+
+<AccordionGroup>
+  <Accordion title="Does this require pdd_bridge?">
+    No. PDD Advanced Elevators is 100% standalone. It does not require `pdd_bridge` to run core logic. `ox_lib` is the only required dependency.
+  </Accordion>
+
+  <Accordion title="The AI voice isn't working.">
+    Check the following: `Config.SoundEffects` is set to `'google-voice'`, `Config.AI.APIKey` is filled in with a valid key, and the Text-to-Speech API is enabled in your Google Cloud project. Check your server console for error messages from the TTS request.
+  </Accordion>
+
+  <Accordion title="Can I add more than two floors?">
+    Yes. Add as many entries as you want to the `locations` table of any elevator. Each entry becomes a selectable floor in the menu.
+  </Accordion>
+
+  <Accordion title="Can I require multiple jobs or items for one elevator?">
+    Yes. Pass a table instead of a string:
+    ```lua
+    job  = { "police", "sheriff" }
+    item = { "hacking_device", "keycard" }
+    ```
+    The player needs to match any one entry in the table — not all of them.
+  </Accordion>
+
+  <Accordion title="How do I disable minigames for a specific elevator?">
+    Set `minigame = false` in that elevator's config block. The master toggle (`Config.Minigame.Enabled`) must also be `true` for any elevator to trigger minigames.
+  </Accordion>
+
+  <Accordion title="What happens to the player's item/money if they fail the minigame?">
+    If `removeItemOnFail = true`, the required item is permanently destroyed. If `removeMoneyOnFail = true`, the required money is burned. Both are handled server-side and cannot be spoofed.
+  </Accordion>
+
+  <Accordion title="The elevator menu isn't opening.">
+    Verify `Config.InteractionType` and `Config.TargetSystem` match the resources you have installed. If using `ox_target` or `qb-target`, make sure those resources are started before `pdd_elevators`.
+  </Accordion>
+
+  <Accordion title="Can I use my own custom menu?">
+    Yes. Set `Config.InteractionType = 'custom'` and implement `CustomClient.OpenMenu` and `CustomClient.CloseMenu` in `client_editable.lua`.
+  </Accordion>
+</AccordionGroup>

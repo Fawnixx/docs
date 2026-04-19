@@ -19,7 +19,7 @@
   ],
   "topbarCtaButton": {
     "name": "Discord",
-    "url": "https://discord.gg/E7BUMksdKV"
+    "url": "https://discord.gg/REPLACE_ME"
   },
   "navigation": [
     {
@@ -28,6 +28,53 @@
         "introduction",
         "requirements",
         "changelog"
+      ]
+    },
+    {
+      "group": "PDD Advanced Crafting",
+      "pages": [
+        "pdd-crafting/overview",
+        "pdd-crafting/installation",
+        "pdd-crafting/configuration",
+        "pdd-crafting/admin-panel",
+        "pdd-crafting/recipes",
+        "pdd-crafting/xp-progression",
+        "pdd-crafting/portable-benches",
+        "pdd-crafting/faq"
+      ]
+    },
+    {
+      "group": "PDD Advanced Elevators",
+      "pages": [
+        "pdd-elevators/overview",
+        "pdd-elevators/installation",
+        "pdd-elevators/configuration",
+        "pdd-elevators/google-tts",
+        "pdd-elevators/customization",
+        "pdd-elevators/faq"
+      ]
+    },
+    {
+      "group": "PDD AI Services",
+      "pages": [
+        "pdd-aiservices/overview",
+        "pdd-aiservices/installation",
+        "pdd-aiservices/configuration",
+        "pdd-aiservices/services",
+        "pdd-aiservices/commands",
+        "pdd-aiservices/customization",
+        "pdd-aiservices/faq"
+      ]
+    },
+    {
+      "group": "PDD Bridge",
+      "pages": [
+        "pdd-bridge/overview",
+        "pdd-bridge/installation",
+        "pdd-bridge/configuration",
+        "pdd-bridge/customization",
+        "pdd-bridge/ai-tts",
+        "pdd-bridge/exports"
       ]
     },
     {

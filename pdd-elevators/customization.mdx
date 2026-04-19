@@ -1,0 +1,111 @@
+---
+title: "Customization"
+description: "Using client_editable.lua and server_editable.lua for custom integrations."
+---
+
+## client_editable.lua
+
+Override any of these functions to hook in custom logic. Return `nil` / `false` to fall back to auto-detection.
+
+### Custom Menu
+
+```lua
+function CustomClient.OpenMenu(data, teleportCallback)
+    -- Fires when Config.InteractionType = 'custom'
+    -- data = menu items, teleportCallback = function to call on floor select
+end
+
+function CustomClient.CloseMenu()
+    -- Close your custom menu
+end
+```
+
+### Custom Sound
+
+```lua
+function CustomClient.PlaySound(soundType)
+    -- soundType: 'ding', 'move', or 'error'
+    -- Fires when Config.SoundEffects = 'custom'
+end
+```
+
+### Inventory Check
+
+```lua
+function CustomClient.HasItem(itemName, amount)
+    -- Fires when Config.Compatibility['inventory'] = "other"
+    -- Return true if player has the item, false if not
+    return true
+end
+```
+
+### Money Check
+
+```lua
+function CustomClient.HasMoney(moneyType, amount)
+    -- Fires when Config.Compatibility['framework'] = "other"
+    return true
+end
+```
+
+### Job Check
+
+```lua
+function CustomClient.GetJob()
+    -- Fires when Config.Compatibility['framework'] = "other"
+    -- Return the player's current job name as a string
+    return "unemployed"
+end
+```
+
+### Notifications
+
+```lua
+function CustomClient.Notify(msg, type)
+    -- Fires when Config.Compatibility['notification'] = "other"
+end
+```
+
+### Custom Minigame
+
+```lua
+function CustomClient.Minigame(difficulty)
+    -- Fires when minigame = "custom" on an elevator
+    -- difficulty: "easy", "medium", "hard"
+    -- Return true on success, false on failure
+    return true
+end
+```
+
+---
+
+## server_editable.lua
+
+### Custom Player Object
+
+```lua
+function CustomServer.GetPlayer(source)
+    -- Return your custom player object
+    return nil
+end
+```
+
+### Custom Item Removal
+
+```lua
+function CustomServer.RemoveItem(source, item, amount)
+    -- Fires on minigame failure when removeItemOnFail = true
+    -- and Config.Compatibility['inventory'] = "other"
+    return false
+end
+```
+
+### Custom Money Removal
+
+```lua
+function CustomServer.RemoveMoney(source, moneyType, amount)
+    -- Fires on minigame failure when removeMoneyOnFail = true
+    -- and Config.Compatibility['framework'] = "other"
+    return false
+end
+```

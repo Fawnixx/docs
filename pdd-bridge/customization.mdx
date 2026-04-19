@@ -1,0 +1,104 @@
+---
+title: "Customization"
+description: "Using client_editable.lua and server_editable.lua to override bridge behavior."
+---
+
+## How It Works
+
+`pdd_bridge` ships with two files specifically designed for your customizations:
+
+- `client/client_editable.lua`
+- `server/server_editable.lua`
+
+These are your override layer. Every function in these files is called **first**, before the bridge attempts its own auto-detection logic.
+
+| Return value | Result |
+|---|---|
+| `nil` / `false` / `{}` | Bridge handles it automatically |
+| Any real value | Your override is used, bridge logic is skipped |
+
+You only need to fill in the functions relevant to your server's scripts. Leave everything else returning `nil`.
+
+<Info>
+  Both files are listed in `escrow_ignore` — they will never be escrowed and are always fully editable.
+</Info>
+
+---
+
+## Client Overrides (`client_editable.lua`)
+
+### Core Player Data
+
+```lua
+function CustomClient.GetPlayerData()
+    -- Return the local player's full data table.
+    -- Example (QBCore):
+    -- return exports['qb-core']:GetCoreObject().Functions.GetPlayerData()
+    return nil
+end
+```
+
+### Notifications
+
+```lua
+function CustomClient.Notify(msg, msgType)
+    -- msgType: "success", "error", "info", "warning"
+    return nil
+end
+```
+
+### Inventory
+
+```lua
+function CustomClient.HasItem(itemName, amount)
+    -- Return true if local player has at least `amount` of `itemName`.
+    return nil
+end
+```
+
+### Vehicles
+
+```lua
+function CustomClient.GiveKeys(plate, vehicle)   return nil end
+function CustomClient.SetFuel(vehicle, amount)   return nil end
+function CustomClient.RepairVehicle(vehicle, repairType) return nil end
+```
+
+### Medical
+
+```lua
+function CustomClient.RevivePlayer()     return nil end
+function CustomClient.HealPlayer(type)   return nil end
+function CustomClient.IsPlayerDead()     return nil end
+```
+
+### Minigame
+
+```lua
+function CustomClient.Minigame(difficulty)
+    -- Return true on success, false on failure.
+    -- difficulty: "easy", "medium", "hard" or numeric
+    return nil
+end
+```
+
+---
+
+## Server Overrides (`server_editable.lua`)
+
+The server editable file follows the same pattern — return `nil` to fall back to bridge auto-detection, or return a real value to override.
+
+Common overrides include custom money handling, custom job systems, or any resource not natively supported by the bridge.
+
+---
+
+## Minigame Configuration
+
+Minigames are **not configured in the bridge** — they're configured per-script. When a PDD script calls the bridge for a minigame, that script's own config determines which minigame to use.
+
+Supported minigames:
+- `ox_lib` — Skill Check
+- `ps-ui` — Circle
+- `qb-lock`
+- `boii_minigames`
+- Custom — implement `CustomClient.Minigame` in `client_editable.lua`

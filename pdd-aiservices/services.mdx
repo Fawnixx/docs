@@ -1,0 +1,80 @@
+---
+title: "Services"
+description: "Detailed breakdown of each AI service."
+---
+
+## EMS
+
+Dispatches an AI medical unit to revive downed players. Three unit types are available:
+
+| Unit | Vehicle | Description |
+|---|---|---|
+| Ground Rescue | `ambulance` | Standard ground unit |
+| Air Rescue | `polmav` | Helicopter with zipline rappel |
+| Underwater Rescue | `submersible` | Sub for water emergencies |
+
+**Key settings (admin panel):**
+- `ReviveHealth` — health value applied on revive (default: 200)
+- `MinHealthPercent` — minimum health percentage before dispatch is allowed (default: 50)
+- `Price` — flat fee per dispatch per unit type
+
+<Note>
+  The script fires `hospital:client:Revive` for death-state clearing. Having your framework's ambulance job resource running is recommended for full compatibility.
+</Note>
+
+---
+
+## Mechanic
+
+Dispatches an AI mechanic unit. Supports flat-rate or vehicle-value-based pricing.
+
+| Unit | Vehicle | Description |
+|---|---|---|
+| Service Truck | `towtruck` | Standard on-site repair |
+| Fuel Delivery | `towtruck` | Refuel a vehicle |
+| Marine Mechanic | `dinghy` | Boat repair |
+| Marine Fuel Delivery | `dinghy` | Boat refuel |
+| Airlift Mechanic | `polmav` | Helicopter repair for aircraft |
+
+**Pricing modes (admin panel):**
+- `flat` — fixed price per service type
+- `value` — percentage of vehicle value (`ValuePercentage`, default: 5%)
+
+**Player shop integration:**  
+When a player with a mechanic job is on duty and a shop is configured, the script automatically dispatches a tow truck to haul the vehicle to that shop instead of an on-site repair unit.
+
+---
+
+## Transport
+
+Dispatches an AI driver for player transport. Distance-based pricing with server-side fare clamping — the client never controls the final price.
+
+| Unit | Vehicle | Description |
+|---|---|---|
+| Taxi | `taxi` | Standard fare transport |
+| Limo | `stretch` | Luxury transport |
+
+**Pricing:** `pricePerMile` — fare rate per mile traveled
+
+---
+
+## Police Impound
+
+LEO-only tab, visible only to players with a job listed in `Config.PoliceTowJobs`.
+
+**Flow:**
+1. Officer opens tablet → Police Impound tab
+2. Selects target vehicle
+3. Dispatches tow unit to vehicle location
+4. On arrival, impound form opens: price, hold time, authorization required, notes
+5. Officer submits form — vehicle is impounded
+
+Impound lot destinations are fully configurable in the admin panel.
+
+---
+
+## Pager Alert System
+
+When an AI unit is dispatched, any real on-duty player with the relevant service job receives a pager alert. They can accept the call and take over from the AI unit manually.
+
+This ensures real players always get priority — AI only fills the gap.

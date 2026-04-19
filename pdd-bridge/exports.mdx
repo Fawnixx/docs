@@ -1,0 +1,238 @@
+---
+title: "Exports Reference"
+description: "Full list of client and server exports exposed by pdd_bridge."
+---
+
+## Client Exports
+
+### Core
+| Export | Description |
+|---|---|
+| `GetFramework` | Returns the detected framework object |
+| `GetLocale` | Returns the active locale string |
+| `GetPlayerData` | Returns the local player's full data table |
+
+### Notifications & UI
+| Export | Description |
+|---|---|
+| `Notify(msg, type)` | Show a notification. Types: `success`, `error`, `info`, `warning` |
+| `Progress(label, duration, canCancel, anim, prop)` | Show a progress bar |
+| `Interact(target, options, textData)` | Register a world interaction |
+| `ToggleInteraction` | Toggle an interaction on/off |
+| `ClearInteract` | Remove a specific interaction |
+| `ClearAllInteractions` | Remove all registered interactions |
+| `SetInteractionMode(mode)` | Override the interaction mode at runtime |
+
+### Inventory
+| Export | Description |
+|---|---|
+| `HasItem(name, amount)` | Returns true if player has at least `amount` of item |
+| `GetItemCount(name)` | Returns the quantity of an item |
+| `OpenInventory` | Opens the player's inventory |
+
+### Vehicles
+| Export | Description |
+|---|---|
+| `GiveKeys(plate, vehicle)` | Give keys to a vehicle |
+| `SetFuel(vehicle, amount)` | Set vehicle fuel level |
+| `RepairVehicle(vehicle, type)` | Repair vehicle. Types: `engine`, `body`, `full` |
+| `CleanVehicle(vehicle)` | Remove dirt from vehicle |
+| `GetVehicleHealth(vehicle)` | Returns engine health (0–1000) |
+| `SetVehicleStatus(vehicle, part, state)` | Set part status |
+| `ImpoundVehicle(vehicle)` | Impound a vehicle entity |
+| `GetCurrentVehicle` | Returns the vehicle the player is currently in |
+| `GetVehiclePlate(vehicle)` | Returns the vehicle's plate string |
+| `IsInVehicle` | Returns true if player is in a vehicle |
+| `OpenGarage` | Open the garage menu |
+| `SpawnOwnedVehicle(plate)` | Spawn a player-owned vehicle |
+| `StoreVehicle(plate)` | Store a vehicle into the garage |
+| `IsVehicleOwned(plate)` | Returns true if vehicle is owned by the local player |
+
+### Player / Position
+| Export | Description |
+|---|---|
+| `GetPlayerCoords` | Returns player coords as vector3 |
+| `GetClosestPlayer` | Returns the closest player's server ID |
+| `SetWaypoint(coords)` | Set a GPS waypoint |
+
+### Medical
+| Export | Description |
+|---|---|
+| `RevivePlayer` | Revive local player from downed state |
+| `HealPlayer(type)` | Heal player. Types: `full`, `minor` |
+| `IsPlayerDead` | Returns true if player is dead/downed |
+| `AdmitToHospital` | Trigger hospital admission |
+
+### Police
+| Export | Description |
+|---|---|
+| `ToggleCuffs(target)` | Toggle handcuffs on target |
+| `EscortPlayer(target)` | Begin escorting a target |
+| `JailPlayer(target, time, reason)` | Send player to jail for X minutes |
+| `IsPlayerCuffed(target)` | Returns true if target is cuffed |
+| `BillPlayer(target, amount, reason)` | Issue a fine to a target |
+
+### Dispatch
+| Export | Description |
+|---|---|
+| `SendMedicalAlert` | Send a medical dispatch alert |
+| `SendPoliceAlert` | Send a police dispatch alert |
+| `SendMechanicAlert` | Send a mechanic dispatch alert |
+| `SendGangAlert` | Send a gang dispatch alert |
+
+### Animations & Props
+| Export | Description |
+|---|---|
+| `PlayAnim(dict, clip, flag)` | Play an animation |
+| `StopAnim` | Stop the current animation |
+| `AttachProp(model, bone, coords, rot)` | Attach a prop to the player |
+| `DetachProps` | Remove all attached props |
+
+### Minigame
+| Export | Description |
+|---|---|
+| `Minigame(difficulty)` | Run a minigame. Returns true on success, false on fail |
+
+---
+
+## Server Exports
+
+### Core
+| Export | Description |
+|---|---|
+| `GetFramework` | Returns the server-side framework object |
+| `GetLocale` | Returns the active locale string |
+| `GetIdentifier(src)` | Returns the player's primary identifier |
+| `GetName(src)` | Returns the player's character name |
+| `GetPlayer(src)` | Returns the player object |
+| `GetPlayerData(src)` | Returns the player's full data table |
+| `GetPlayerId(identifier)` | Returns server ID from identifier |
+| `IsPlayerOnline(src)` | Returns true if player is connected |
+| `GetAllPlayers` | Returns all online player IDs |
+| `GetNearbyPlayers(src, radius)` | Returns players within radius |
+| `HasPermission(src, permission)` | Returns true if player has permission |
+
+### Money
+| Export | Description |
+|---|---|
+| `GetMoney(src, account)` | Returns balance of an account |
+| `HasMoney(src, account, amount)` | Returns true if player has enough |
+| `AddMoney(src, account, amount)` | Add money to an account |
+| `RemoveMoney(src, account, amount)` | Remove money from an account |
+
+### Jobs
+| Export | Description |
+|---|---|
+| `GetPlayerJob(src)` | Returns the player's current job |
+| `GetJob(src)` | Alias for GetPlayerJob |
+| `SetJob(src, job, grade)` | Set a player's job and grade |
+| `GetJobCount(job)` | Returns count of online players with job |
+| `IsOnDuty(src)` | Returns true if player is on duty |
+| `SetOnDuty(src, state)` | Set a player's duty state |
+| `GetDutyCount(job)` | Returns count of on-duty players with job |
+| `IsJobGrade(src, job, grade)` | Returns true if player matches job/grade |
+
+### Inventory
+| Export | Description |
+|---|---|
+| `AddItem(src, item, amount, meta)` | Add item to player inventory |
+| `RemoveItem(src, item, amount)` | Remove item from player inventory |
+| `HasItem(src, item, amount)` | Returns true if player has item |
+| `GetItemCount(src, item)` | Returns item quantity |
+| `GetItemMetadata(src, item)` | Returns item metadata table |
+| `GetInventory(src)` | Returns full inventory table |
+| `GetAllItems` | Returns all registered items |
+| `GetItemInfo(item)` | Returns item definition data |
+| `ClearInventory(src)` | Clear player's inventory |
+| `GetInventoryWeight(src)` | Returns current inventory weight |
+| `RegisterUsableItem(item, cb)` | Register an item as usable |
+
+### Vehicles & Garage
+| Export | Description |
+|---|---|
+| `GiveVehicle(src, model, props)` | Give a vehicle to a player |
+| `DeleteVehicle(plate)` | Delete a vehicle by plate |
+| `GetPlayerVehicles(src)` | Returns all vehicles owned by player |
+| `SetVehicleOwner(plate, src)` | Transfer vehicle ownership |
+| `GiveVehicleKeys(src, plate)` | Give vehicle keys server-side |
+| `SpawnVehicle(model, coords, heading)` | Spawn a vehicle at coords |
+| `GetVehiclePrice(model)` | Returns the price of a vehicle model |
+| `ImpoundVehicle(plate)` | Impound a vehicle by plate |
+| `GetAllVehicles` | Returns all registered vehicles |
+| `GetVehicleByPlate(plate)` | Returns vehicle data by plate |
+
+### Gangs
+| Export | Description |
+|---|---|
+| `GetPlayerGang(src)` | Returns player's gang data |
+| `SetPlayerGang(src, gang, grade)` | Set player's gang and grade |
+| `GetGangMembers(gang)` | Returns all members of a gang |
+| `SetGangGrade(src, grade)` | Set player's gang grade |
+| `GetAllGangs` | Returns all registered gangs |
+| `GetGangGrades(gang)` | Returns all grades for a gang |
+| `ManageGangFunds(gang, action, amount)` | Add/remove gang funds |
+| `IsGangGrade(src, gang, grade)` | Returns true if player matches gang/grade |
+
+### Society Banking
+| Export | Description |
+|---|---|
+| `ManageJobFunds(job, action, amount)` | Add/remove job society funds |
+| `GetJobFunds(job)` | Returns job society balance |
+| `GetGangFunds(gang)` | Returns gang society balance |
+| `HasJobFunds(job, amount)` | Returns true if job has enough funds |
+| `HasGangFunds(gang, amount)` | Returns true if gang has enough funds |
+| `BillPlayer(src, amount, reason)` | Issue a bill to a player |
+
+### Weapons
+| Export | Description |
+|---|---|
+| `GiveWeapon(src, weapon, ammo, meta)` | Give a weapon to a player |
+| `RemoveWeapon(src, weapon)` | Remove a weapon from a player |
+| `HasWeapon(src, weapon)` | Returns true if player has weapon |
+
+### Player Extended
+| Export | Description |
+|---|---|
+| `GetCharInfo(src)` | Returns character info (name, DOB, etc.) |
+| `GetPlayerLicenses(src)` | Returns player's licenses |
+| `GetOnlineCount` | Returns total online player count |
+| `GetServerTime` | Returns current server time |
+| `SetPlayerCoords(src, coords)` | Teleport a player to coords |
+| `IsPlayerInVehicle(src)` | Returns true if player is in a vehicle |
+| `GetPlayerStatus(src)` | Returns player status (hunger, thirst, etc.) |
+| `GetNearbyVehicles(coords, radius)` | Returns vehicles within radius |
+| `SetMetaData(src, key, value)` | Set a metadata value on a player |
+| `GetMetaData(src, key)` | Get a metadata value from a player |
+
+### Admin
+| Export | Description |
+|---|---|
+| `KickPlayer(src, reason)` | Kick a player |
+| `BanPlayer(src, reason, duration)` | Ban a player |
+| `RestartResource(name)` | Restart a resource by name |
+
+### Licenses & Housing
+| Export | Description |
+|---|---|
+| `AddLicense(src, license)` | Add a license to a player |
+| `RemoveLicense(src, license)` | Remove a license from a player |
+| `HasLicense(src, license)` | Returns true if player has license |
+| `GetHouse(src)` | Returns player's house data |
+| `GiveHouse(src, house)` | Give a house to a player |
+| `RemoveHouse(src, house)` | Remove a house from a player |
+| `GiveHouseKey(src, house, target)` | Give house key to another player |
+| `RemoveHouseKey(src, house, target)` | Remove house key from a player |
+
+### Communications
+| Export | Description |
+|---|---|
+| `Notify(src, msg, type)` | Send a notification to a player server-side |
+| `SendMail(src, subject, body)` | Send an in-game mail |
+| `SendSMS(src, number, message)` | Send an in-game SMS |
+
+### AI & Services
+| Export | Description |
+|---|---|
+| `GetAI(prompt, system)` | Send a prompt to the configured AI provider |
+| `GetTTS(text, voice)` | Generate TTS audio from text |
+| `Log(name, title, color, msg)` | Send a log to the configured Discord webhook |

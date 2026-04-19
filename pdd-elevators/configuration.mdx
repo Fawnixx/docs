@@ -1,0 +1,192 @@
+---
+title: "Configuration"
+description: "Full breakdown of config.lua for PDD Advanced Elevators."
+---
+
+## Locale
+
+```lua
+Config.Locale = 'en'
+```
+
+Options: `en`, `es`, `fr`, `de`, `it`, `ja`, `pt`, `ru`, `zh`, `ar`
+
+---
+
+## Compatibility
+
+```lua
+Config.Compatibility = {
+    ['framework']    = "auto",
+    ['inventory']    = "auto",
+    ['notification'] = "auto",
+}
+```
+
+All default to `"auto"`. Override only if auto-detection picks the wrong resource.
+
+| Category | Accepted Values |
+|---|---|
+| `framework` | `auto`, `qbcore`, `qbx`, `esx`, `other` |
+| `inventory` | `auto`, `ox_inventory`, `qb-inventory`, `qs-inventory`, `ak47`, `codem`, `esx_inventory`, `other` |
+| `notification` | `auto`, `wasabi`, `drc`, `okokNotify`, `qbcore`, `qbx`, `esx`, `ox_lib`, `mNotify`, `other` |
+
+---
+
+## UI & Interaction
+
+```lua
+Config.InteractionType = 'ox_lib'     -- ox_lib, qb-menu, custom
+Config.TargetSystem    = 'textUI'     -- ox_target, qb-target, textUI, custom
+Config.SoundEffects    = 'google-voice' -- interact-sound, xsound, google-voice, custom, false
+```
+
+---
+
+## Minigame
+
+```lua
+Config.Minigame = {
+    Enabled = true,
+}
+```
+
+Master toggle. If `false`, all elevators completely bypass minigame logic regardless of individual elevator settings.
+
+---
+
+## Custom Sound Files
+
+```lua
+Config.CustomSounds = {
+    InteractSound = {
+        Ding  = 'elevator_ding',   -- filename in interact-sound (no .ogg)
+        Error = 'elevator_error',
+    },
+    XSound = {
+        Ding  = 'elevator_ding.ogg',   -- file in pdd_elevator/html/sounds/
+        Error = 'elevator_error.ogg',
+    }
+}
+```
+
+---
+
+## AI Voice
+
+```lua
+Config.AI = {
+    Enabled    = true,
+    APIKey     = "YOUR_API_KEY_HERE",
+    VoiceModel = "en-US-Neural2-F",
+    ErrorText  = "I'm sorry, you lack the credentials to use this elevator.",
+}
+```
+
+- **APIKey** — Your Google Cloud TTS API key
+- **VoiceModel** — Must match your locale. See the [voice model reference](#voice-model-reference) below
+- **ErrorText** — Spoken aloud when a player fails access checks
+
+---
+
+## Blips
+
+```lua
+Config.Blip = {
+    Enabled         = true,
+    Sprite          = 475,
+    Color           = 3,
+    Scale           = 0.6,
+    DisplayDistance = 75.0,
+    JobControl      = true,
+}
+```
+
+- **JobControl** — When `true`, blips only show to players whose job matches the elevator's `job` restriction
+
+---
+
+## Elevator Configuration
+
+Each elevator shaft is defined as an entry in `Config.Elevators`:
+
+```lua
+Config.Elevators = {
+    ["your_elevator_id"] = {
+        label             = "Elevator Display Name",
+        job               = false,
+        item              = false,
+        money             = false,
+        minigame          = false,
+        difficulty        = "easy",
+        removeItemOnFail  = false,
+        removeMoneyOnFail = false,
+        locations = {
+            { coords = vector4(x, y, z, w), level = "Level 1", icon = "fas fa-building", voiceText = "First Floor." },
+            { coords = vector4(x, y, z, w), level = "Level 2", icon = "fas fa-helicopter", voiceText = "Top Floor." },
+        },
+    },
+}
+```
+
+### Field Reference
+
+| Field | Type | Description |
+|---|---|---|
+| `label` | string | Display name shown in the elevator menu |
+| `job` | `false` \| string \| table | Required job(s) to use this elevator. Example: `"police"` or `{ "police", "sheriff" }` |
+| `item` | `false` \| string \| table | Required item(s). Example: `"hacking_device"` or `{ "hacking_device", "keycard" }` |
+| `money` | `false` \| table | Required money. Example: `{ type = "cash", amount = 500 }` |
+| `minigame` | `false` \| string | Minigame to require. See [minigame options](#minigame-options) |
+| `difficulty` | string | `"easy"`, `"medium"`, or `"hard"` |
+| `removeItemOnFail` | boolean | If `true`, the required item is destroyed on minigame failure |
+| `removeMoneyOnFail` | boolean | If `true`, the required money is burned on minigame failure |
+| `locations` | table | Array of floor entries with coords, label, icon, and voice text |
+
+### Floor Entry Fields
+
+| Field | Description |
+|---|---|
+| `coords` | `vector4` — x, y, z position + heading |
+| `level` | Display label for this floor in the menu |
+| `icon` | Font Awesome icon class (e.g. `"fas fa-building"`) |
+| `voiceText` | Text spoken by the AI voice when arriving at this floor |
+
+---
+
+## Minigame Options
+
+| Value | Description |
+|---|---|
+| `false` | No minigame — elevator opens freely |
+| `"auto"` | Auto-detects an installed minigame script |
+| `"ox_lib"` | ox_lib Skill Check |
+| `"ps-ui"` | ps-ui Circle |
+| `"qb-lock"` | qb-lock |
+| `"boii_circle"` | boii_minigames Circle |
+| `"boii_wirecut"` | boii_minigames Wire Cut |
+| `"boii_keypad"` | boii_minigames Keypad |
+| `"boii_safecrack"` | boii_minigames Safe Crack |
+| `"boii_chimp"` | boii_minigames Chimp |
+| `"custom"` | Custom — implement in `client_editable.lua` |
+
+---
+
+## Voice Model Reference
+
+| Language | Standard Voices | Neural Voices |
+|---|---|---|
+| English (`en`) | `en-US-Standard-D`, `en-US-Standard-F` | `en-US-Neural2-D`, `en-US-Studio-O` |
+| Spanish (`es`) | `es-ES-Standard-A` | `es-ES-Neural2-A` |
+| French (`fr`) | `fr-FR-Standard-A` | `fr-FR-Neural2-A` |
+| German (`de`) | `de-DE-Standard-B` | `de-DE-Neural2-B` |
+| Italian (`it`) | `it-IT-Standard-A` | `it-IT-Neural2-A` |
+| Portuguese (`pt`) | `pt-BR-Standard-A` | `pt-BR-Neural2-A` |
+| Russian (`ru`) | `ru-RU-Standard-A` | `ru-RU-Wavenet-A` |
+| Chinese (`zh`) | `cmn-CN-Standard-A` | `cmn-CN-Wavenet-A` |
+| Japanese (`ja`) | `ja-JP-Standard-B` | `ja-JP-Neural2-B` |
+| Arabic (`ar`) | `ar-XA-Standard-A` | `ar-XA-Wavenet-A` |
+
+<Warning>
+  The voice model must match your locale. Mismatched language/voice combinations will return silence from the Google TTS API.
+</Warning>

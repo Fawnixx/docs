@@ -1,0 +1,77 @@
+---
+title: "Customization"
+description: "Using server_editable.lua for custom integrations."
+---
+
+## server_editable.lua
+
+The server editable file exposes four override functions. Return `nil` to use the default `pdd_bridge` behavior, or implement your own logic.
+
+### Money Removal
+
+```lua
+function CustomServer.RemoveMoney(src, amount)
+    return exports["pdd_bridge"]:RemoveMoney(src, "bank", amount, "ai-service-fee")
+end
+```
+
+Override this if you use a custom money system or want to charge from a different account (e.g. `cash` instead of `bank`).
+
+---
+
+### Job Count
+
+```lua
+function CustomServer.GetJobCount(jobName)
+    return exports["pdd_bridge"]:GetJobCount(jobName) or 0
+end
+```
+
+Override this if your framework's job system isn't detected correctly by `pdd_bridge`.
+
+---
+
+### Impound Execution
+
+```lua
+function CustomServer.ExecuteImpound(src, vehNet, price, time, requiresAuth, notes)
+    exports["pdd_bridge"]:ImpoundVehicle(src, vehNet, price, time, requiresAuth, notes)
+end
+```
+
+Override this to route impound calls to a custom impound system.
+
+---
+
+### Jail Detection
+
+```lua
+function CustomServer.IsPlayerJailed(src)
+    -- Returns true if player is in jail, false otherwise
+end
+```
+
+The default implementation checks QBCore/QBX and ESX metadata for `injail` and `jailed` keys. Override if your server uses a custom jail system.
+
+<Warning>
+  QB-Core stores `injail` as a number (0 = free, >0 = time remaining), not a boolean. Lua treats `0` as truthy — never use plain `or` comparisons on these values. The default implementation uses `tonumber()` correctly.
+</Warning>
+
+---
+
+## client_editable.lua
+
+Currently reserved for future custom client-side hooks. No overrides are required at this time.
+
+---
+
+## Localization
+
+Locale files live in `locales/`. All 10 languages ship out of the box.
+
+To add a custom language:
+1. Copy `locales/en.lua` and rename it (e.g. `locales/ko.lua`)
+2. Translate all string values
+3. Register it in `fxmanifest.lua` under `shared_scripts`
+4. Register it in `locales/init.lua`
+5. Set `Config.Locale = 'ko'` in `config.lua`
