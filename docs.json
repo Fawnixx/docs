@@ -35,6 +35,17 @@
             ]
           },
           {
+            "group": "PDD Bridge",
+            "pages": [
+              "pdd-bridge/overview",
+              "pdd-bridge/installation",
+              "pdd-bridge/configuration",
+              "pdd-bridge/customization",
+              "pdd-bridge/ai-tts",
+              "pdd-bridge/exports"
+            ]
+          },
+          {
             "group": "PDD Advanced AIServices",
             "pages": [
               "pdd-advanced-aiservices/overview",
@@ -78,17 +89,6 @@
               "pdd-advanced-loyalty/configuration",
               "pdd-advanced-loyalty/commands",
               "pdd-advanced-loyalty/faq"
-            ]
-          },
-          {
-            "group": "PDD Bridge",
-            "pages": [
-              "pdd-bridge/overview",
-              "pdd-bridge/installation",
-              "pdd-bridge/configuration",
-              "pdd-bridge/customization",
-              "pdd-bridge/ai-tts",
-              "pdd-bridge/exports"
             ]
           }
         ]
