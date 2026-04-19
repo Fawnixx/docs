@@ -21,73 +21,80 @@
     "name": "Discord",
     "url": "https://discord.gg/REPLACE_ME"
   },
-  "navigation": [
-    {
-      "group": "Getting Started",
-      "pages": [
-        "introduction",
-        "requirements",
-        "changelog"
-      ]
-    },
-    {
-      "group": "PDD Advanced Crafting",
-      "pages": [
-        "pdd-crafting/overview",
-        "pdd-crafting/installation",
-        "pdd-crafting/configuration",
-        "pdd-crafting/admin-panel",
-        "pdd-crafting/recipes",
-        "pdd-crafting/xp-progression",
-        "pdd-crafting/portable-benches",
-        "pdd-crafting/faq"
-      ]
-    },
-    {
-      "group": "PDD Advanced Elevators",
-      "pages": [
-        "pdd-elevators/overview",
-        "pdd-elevators/installation",
-        "pdd-elevators/configuration",
-        "pdd-elevators/google-tts",
-        "pdd-elevators/customization",
-        "pdd-elevators/faq"
-      ]
-    },
-    {
-      "group": "PDD AI Services",
-      "pages": [
-        "pdd-aiservices/overview",
-        "pdd-aiservices/installation",
-        "pdd-aiservices/configuration",
-        "pdd-aiservices/services",
-        "pdd-aiservices/commands",
-        "pdd-aiservices/customization",
-        "pdd-aiservices/faq"
-      ]
-    },
-    {
-      "group": "PDD Bridge",
-      "pages": [
-        "pdd-bridge/overview",
-        "pdd-bridge/installation",
-        "pdd-bridge/configuration",
-        "pdd-bridge/customization",
-        "pdd-bridge/ai-tts",
-        "pdd-bridge/exports"
-      ]
-    },
-    {
-      "group": "PDD Advanced Loyalty",
-      "pages": [
-        "pdd-advanced-loyalty/overview",
-        "pdd-advanced-loyalty/installation",
-        "pdd-advanced-loyalty/configuration",
-        "pdd-advanced-loyalty/commands",
-        "pdd-advanced-loyalty/faq"
-      ]
-    }
-  ],
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "requirements",
+              "changelog"
+            ]
+          },
+          {
+            "group": "PDD Advanced Crafting",
+            "pages": [
+              "pdd-crafting/overview",
+              "pdd-crafting/installation",
+              "pdd-crafting/configuration",
+              "pdd-crafting/admin-panel",
+              "pdd-crafting/recipes",
+              "pdd-crafting/xp-progression",
+              "pdd-crafting/portable-benches",
+              "pdd-crafting/faq"
+            ]
+          },
+          {
+            "group": "PDD Advanced Elevators",
+            "pages": [
+              "pdd-elevators/overview",
+              "pdd-elevators/installation",
+              "pdd-elevators/configuration",
+              "pdd-elevators/google-tts",
+              "pdd-elevators/customization",
+              "pdd-elevators/faq"
+            ]
+          },
+          {
+            "group": "PDD AI Services",
+            "pages": [
+              "pdd-aiservices/overview",
+              "pdd-aiservices/installation",
+              "pdd-aiservices/configuration",
+              "pdd-aiservices/services",
+              "pdd-aiservices/commands",
+              "pdd-aiservices/customization",
+              "pdd-aiservices/faq"
+            ]
+          },
+          {
+            "group": "PDD Bridge",
+            "pages": [
+              "pdd-bridge/overview",
+              "pdd-bridge/installation",
+              "pdd-bridge/configuration",
+              "pdd-bridge/customization",
+              "pdd-bridge/ai-tts",
+              "pdd-bridge/exports"
+            ]
+          },
+          {
+            "group": "PDD Advanced Loyalty",
+            "pages": [
+              "pdd-advanced-loyalty/overview",
+              "pdd-advanced-loyalty/installation",
+              "pdd-advanced-loyalty/configuration",
+              "pdd-advanced-loyalty/commands",
+              "pdd-advanced-loyalty/faq"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "footerSocials": {
     "discord": "https://discord.gg/REPLACE_ME"
   }
