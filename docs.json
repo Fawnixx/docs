@@ -36,7 +36,7 @@
           },
           {
             "group": "PDD Bridge",
-            "collapsed": true,
+            "defaultOpen": false,
             "pages": [
               "pdd-bridge/overview",
               "pdd-bridge/installation",
@@ -48,7 +48,7 @@
           },
           {
             "group": "PDD Advanced AIServices",
-            "collapsed": true,
+            "defaultOpen": false,
             "pages": [
               "pdd-advanced-aiservices/overview",
               "pdd-advanced-aiservices/installation",
@@ -61,7 +61,7 @@
           },
           {
             "group": "PDD Advanced Crafting",
-            "collapsed": true,
+            "defaultOpen": false,
             "pages": [
               "pdd-advanced-crafting/overview",
               "pdd-advanced-crafting/installation",
@@ -75,7 +75,7 @@
           },
           {
             "group": "PDD Advanced Elevators",
-            "collapsed": true,
+            "defaultOpen": false,
             "pages": [
               "pdd-advanced-elevators/overview",
               "pdd-advanced-elevators/installation",
@@ -87,7 +87,7 @@
           },
           {
             "group": "PDD Advanced Loyalty",
-            "collapsed": true,
+            "defaultOpen": false,
             "pages": [
               "pdd-advanced-loyalty/overview",
               "pdd-advanced-loyalty/installation",
@@ -98,7 +98,7 @@
           },
           {
             "group": "PDD Advanced WorldSearch",
-            "collapsed": true,
+            "defaultOpen": false,
             "pages": [
               "pdd-advanced-worldsearch/overview",
               "pdd-advanced-worldsearch/installation",
