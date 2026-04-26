@@ -58,6 +58,18 @@
             ]
           },
           {
+            "group": "PDD Advanced WorldSearch",
+            "pages": [
+              "pdd-advanced-worldsearch/overview",
+              "pdd-advanced-worldsearch/installation",
+              "pdd-advanced-worldsearch/configuration",
+              "pdd-advanced-worldsearch/props",
+              "pdd-advanced-worldsearch/commands",
+              "pdd-advanced-worldsearch/customization",
+              "pdd-advanced-worldsearch/faq"
+            ]
+          },
+          {
             "group": "PDD Advanced Crafting",
             "pages": [
               "pdd-advanced-crafting/overview",

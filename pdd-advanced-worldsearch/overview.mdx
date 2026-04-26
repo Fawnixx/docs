@@ -1,0 +1,44 @@
+---
+title: "Overview"
+description: "What is PDD Advanced WorldSearch?"
+---
+
+# PDD Advanced WorldSearch
+
+**Version:** 1.0.0 | **Framework:** QBCore, QBX, ESX | **Author:** PhatDaddy Development LLC
+
+PDD Advanced WorldSearch turns any GTA world prop into a searchable container. Dumpsters, trash cans, mailboxes, pallets, barrels — if it exists in the world, it can be searched. Everything is managed through an in-game Samsung Galaxy Tab S-style NUI tablet. No config file editing required for day-to-day operations.
+
+## Prop Types
+
+<CardGroup cols={2}>
+  <Card title="Global Props" icon="layer-group">
+    Apply a loot config to every instance of a model in the world. Add `prop_dumpster_01a` once and all dumpsters across the map become searchable.
+  </Card>
+  <Card title="Unique Props" icon="location-dot">
+    Pin an override to exact world coordinates. One specific tree, one specific crate — its own loot table, independent of the global config.
+  </Card>
+  <Card title="Loot Tables" icon="list">
+    Per-prop weighted random loot with min/max quantity, illegal item flagging, and a typeahead item search in the UI.
+  </Card>
+  <Card title="Aim & Select" icon="crosshairs">
+    Live entity raycast with gold laser line and outline. Point at any prop to capture its model name and coordinates instantly — no manual coord copying required.
+  </Card>
+</CardGroup>
+
+## Key Features
+
+- **In-tablet admin panel** — live prop management, loot tables, and global settings with no restarts required
+- **Multi-target support** — ox_target, qb-target, ox_lib Text UI, and native Text UI, auto-detected via pdd_bridge
+- **Cooldown system** — per-player (license-keyed) and server-wide per-prop entity cooldowns
+- **Dispatch integration** — optional alert fires when a player finds an illegal item
+- **Search History log** — last 100 successful searches visible to admins in-tablet
+- **Empty search chance** — configurable flat % chance of finding nothing regardless of loot table
+- **10-language locale** — ships with EN, ES, FR, DE, IT, PT, RU, ZH, JA, AR
+
+## Dependencies
+
+| Resource | Required |
+|---|---|
+| `pdd_bridge` | ✅ Yes |
+| `ox_target` / `qb-target` / `ox_lib` | ❌ Optional — falls back to Text UI automatically |

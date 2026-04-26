@@ -1,0 +1,128 @@
+---
+title: "Props & Loot"
+description: "Global props, unique props, loot tables, and how the search system works."
+---
+
+## Global Props
+
+A **Global Prop** applies to every instance of a model in the world. Add `prop_dumpster_01a` once and every dumpster of that model across the entire map becomes searchable with the same loot config.
+
+### Default Catalog
+
+The script ships with a curated default catalog. Only `prop_dumpster_01a` (Metal Dumpster) is enabled by default — enable additional props in the admin panel to suit your server's economy.
+
+| Model | Label | Category | Default |
+|---|---|---|---|
+| `prop_dumpster_01a` | Metal Dumpster | Waste | ✅ Enabled |
+| `prop_dumpster_02a` | Large Dumpster | Waste | ❌ Disabled |
+| `prop_dumpster_3` | Green Dumpster | Waste | ❌ Disabled |
+| `prop_bin_07a` | Street Trash Can | Waste | ❌ Disabled |
+| `prop_bin_09b` | Metal Bin | Waste | ❌ Disabled |
+| `prop_barrel_01a` | Steel Barrel | Industrial | ❌ Disabled |
+| `prop_box_wood01a` | Wooden Crate | Industrial | ❌ Disabled |
+| `prop_pallet_01a` | Wooden Pallet | Industrial | ❌ Disabled |
+
+### Prop Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `model` | string | GTA prop model name (e.g. `prop_dumpster_01a`) |
+| `label` | string | Display name shown in notifications and the UI |
+| `image` | string | Thumbnail filename. Must exist in `html/images/` |
+| `enabled` | boolean | Toggle the prop without deleting it |
+| `radius` | number (m) | Per-prop interaction radius override |
+| `category` | string | `waste`, `nature`, `street`, `industrial`, `commerce`, `custom` |
+| `tags` | string[] | Search keywords for the UI search bar |
+| `loot` | table | Array of weighted loot entries |
+
+---
+
+## Unique Props
+
+A **Unique Prop** is pinned to exact world coordinates. It shares a model with a global prop but has its own loot table, radius, and label. When a player searches a prop that matches both a global entry and a unique entry at that location, the **unique config takes priority**.
+
+Use cases: story-driven stashes, hidden server caches, boss-tier loot at a single map location.
+
+### Aim & Select
+
+The fastest way to add a unique prop is with **Aim & Select**:
+
+1. Open a Unique Prop modal and click **Aim & Select**
+2. The tablet hides and a gold laser raycast activates from your camera
+3. Point your crosshair at any prop in the world — its model name, hash, and coordinates display in real time
+4. Press **[E]** to capture — model and coords are injected into the modal automatically
+5. Press **[ESC]** to cancel without capturing
+
+<Note>
+  Only object entities (type 3) can be captured. Vehicles and peds are ignored. If nothing is detected, walk closer — the raycast range is 20 metres.
+</Note>
+
+### Unique Prop Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `model` | string | GTA model name |
+| `label` | string | Display name for this specific instance |
+| `x` / `y` / `z` | number | World coordinates of this prop instance |
+| `radius` | number (m) | Interaction radius. Default: 1.5m |
+| `category` | string | Category for UI filtering |
+| `tags` | string[] | Search keywords |
+| `enabled` | boolean | Toggle this instance on/off independently |
+| `loot` | table | Independent loot table for this instance |
+
+---
+
+## Loot Tables
+
+Every prop (global or unique) has its own loot table. When a player searches a prop, the server runs a weighted random roll and awards one item.
+
+### How Weighting Works
+
+The `chance` field is a **relative weight**, not a percentage. The server sums all `chance` values in the table, rolls between 1 and that total, and selects the matching entry.
+
+**Example:** entries weighted 40, 30, 20, 10 sum to 100. The entry at weight 40 has a 40% real probability. Add a new entry at 20 and the total becomes 120 — that same entry drops to ~33%.
+
+### Loot Entry Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `item` | string | Item name as defined in your framework's item registry |
+| `label` | string | Human-readable display name for notifications |
+| `min` | number | Minimum quantity to award |
+| `max` | number | Maximum quantity. A random value between min and max is selected |
+| `chance` | number | Relative weight. Must be ≥ 1 |
+| `illegal` | boolean | Flags the item as illegal. Triggers dispatch alert if enabled |
+
+### Example
+
+```lua
+loot = {
+    { item = 'water_bottle',   label = 'Bottle of Water',  min = 1, max = 2, chance = 40, illegal = false },
+    { item = 'sandwich',       label = 'Sandwich',         min = 1, max = 1, chance = 35, illegal = false },
+    { item = 'metalscrap',     label = 'Metal Scrap',      min = 1, max = 2, chance = 30, illegal = false },
+    { item = 'lockpick',       label = 'Lockpick',         min = 1, max = 1, chance = 12, illegal = false },
+    { item = 'pistol_ammo',    label = 'Pistol Ammo',      min = 1, max = 6, chance =  3, illegal = true  },
+    { item = 'joint',          label = 'Joint',            min = 1, max = 2, chance =  2, illegal = true  },
+}
+```
+
+### Limits
+
+| Limit | Value |
+|---|---|
+| Max loot entries per prop | 50 |
+| Max global props | 500 |
+| Max unique props | 2,000 |
+
+---
+
+## Prop Categories
+
+| Value | Label | Typical Prop Types |
+|---|---|---|
+| `waste` | Waste & Containers | Dumpsters, trash cans, bins |
+| `nature` | Nature & Outdoors | Trees, bushes, hay bales, rocks |
+| `street` | Street & Urban | Benches, planters, newspaper boxes |
+| `industrial` | Industrial | Pallets, crates, barrels, drums |
+| `commerce` | Mail & Commerce | Mailboxes, delivery boxes, shop shelves |
+| `custom` | Custom | Any server-specific props |

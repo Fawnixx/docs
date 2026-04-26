@@ -1,0 +1,50 @@
+---
+title: "Installation"
+description: "How to install PDD Advanced WorldSearch."
+---
+
+## Step 1 — Add the Resource
+
+Drop `pdd_advanced-worldsearch` into your resources directory:
+
+```
+resources/
+└── [pdd]/
+    ├── pdd_bridge/
+    └── pdd_advanced-worldsearch/
+```
+
+## Step 2 — Configure `config.lua`
+
+Open `config.lua` and at minimum add your license hash:
+
+```lua
+Config.Licenses = {
+    ["license:YOUR_LICENSE_HASH_HERE"] = true,
+}
+```
+
+Everything else (props, loot tables, distances, cooldowns) is configured in-game via the admin panel.
+
+## Step 3 — Add to server.cfg
+
+Load order matters. `pdd_bridge` must start first:
+
+```
+ensure pdd_bridge
+ensure pdd_advanced-worldsearch
+```
+
+If you use `ox_target`, `qb-target`, or `ox_lib`, ensure those start before `pdd_advanced-worldsearch` as well.
+
+## Step 4 — Start Your Server
+
+On first start the resource generates `data/searchdata.json` from the built-in default catalog. No SQL import needed — there are no database tables.
+
+<Check>
+  If the resource starts without console errors, join the server and run `/searchadmin` to open the admin tablet and verify everything is working.
+</Check>
+
+## Step 5 — Configure In-Game
+
+Use `/searchadmin` (admin-only) to open the admin panel and manage all props and settings live. Changes save automatically to `data/searchdata.json`.

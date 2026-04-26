@@ -1,0 +1,49 @@
+---
+title: "FAQ"
+description: "Common questions about PDD Advanced WorldSearch."
+---
+
+<AccordionGroup>
+  <Accordion title="Nothing happens when I search a prop.">
+    Check that: (1) the prop's model name exactly matches the GTA model — no typos, (2) the prop is **enabled** in the admin panel, (3) your target system is configured correctly, and (4) the player's cooldown hasn't already expired for that prop model.
+  </Accordion>
+
+  <Accordion title="The admin tablet says Unauthorized.">
+    Your license hash is not in `Config.Licenses`. Run the following in your server console to find your exact hash, then add it to `config.lua`:
+    ```
+    print(GetPlayerIdentifierByType(source, 'license'))
+    ```
+  </Accordion>
+
+  <Accordion title="Target system isn't working after I changed it.">
+    Target system changes require a resource restart. Use the **Restart Resource** button in the Danger Zone section of the admin panel — it saves your config and restarts automatically.
+  </Accordion>
+
+  <Accordion title="searchdata.json isn't updating.">
+    The resource must have write permission to its own folder on the FXServer. Check file permissions. The server console will log an error if `SaveResourceFile` fails.
+  </Accordion>
+
+  <Accordion title="Aim & Select isn't detecting anything.">
+    Only object entities (GTA entity type 3) can be captured. Vehicles and peds are ignored. Walk to within 20 metres of the prop — that is the maximum raycast range. Also make sure you are pointing directly at the prop's mesh, not slightly past it.
+  </Accordion>
+
+  <Accordion title="Can I add props outside the default categories?">
+    Yes — use the `custom` category. The search bar still finds them by model name, label, and tags regardless of category.
+  </Accordion>
+
+  <Accordion title="Can players find more than one item per search?">
+    No — one item is awarded per search by design to keep the economy balanced. The quantity is randomized between the loot entry's `min` and `max` values.
+  </Accordion>
+
+  <Accordion title="Can I change which items are in the loot table without restarting?">
+    Yes. Open the prop editor in the admin panel, click **Edit Loot Table**, make your changes, and save. Changes apply immediately with no restart required.
+  </Accordion>
+
+  <Accordion title="What happens when a Unique Prop and a Global Prop overlap?">
+    The Unique Prop config takes priority. If a prop at specific coordinates matches both a global entry and a unique entry, the unique loot table and settings are used for that instance.
+  </Accordion>
+
+  <Accordion title="The search history log is empty after a restart.">
+    The search log is held in server memory only. It does not persist across resource restarts. Enable Discord webhook logging in `config.lua` for a persistent audit trail.
+  </Accordion>
+</AccordionGroup>

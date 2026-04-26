@@ -1,0 +1,51 @@
+---
+title: "Customization"
+description: "Localization and extending PDD Advanced WorldSearch."
+---
+
+## Localization
+
+Locale files live in `locales/`. All 10 languages ship out of the box. The active locale is set via `Config.Locale` in `config.lua`.
+
+To add a custom language:
+1. Copy `locales/en.lua` and rename it (e.g. `locales/ko.lua`)
+2. Translate all string values
+3. Register it in `fxmanifest.lua` under `shared_scripts`
+4. Set `Config.Locale = 'ko'` in `config.lua`
+
+---
+
+## Prop Images
+
+Each prop can display a thumbnail image in the admin panel card view. Images must be placed in `html/images/` and referenced in the prop's `image` field by filename only (e.g. `prop_dumpster_01a.png`).
+
+The default catalog includes image entries for all built-in props. Custom props added through the UI can reference any image file you place in that folder.
+
+---
+
+## Custom Loot Items
+
+The loot table editor's typeahead search pulls item names from your framework's registered item list via pdd_bridge. Any item registered in your framework's shared items is available — no additional configuration required.
+
+---
+
+## Dispatch Integration
+
+Illegal item dispatch alerts are fired through pdd_bridge when a player finds an item with `illegal = true` and `enableDispatch` is set to `true` in the admin panel. The dispatch message, code, and behavior are controlled by your pdd_bridge dispatch configuration.
+
+---
+
+## Search Event Hook
+
+The server fires an internal net event on every successful search (`pdd_advanced-worldsearch:server:ExecuteSearch`). If you need to hook into search completions for custom logic (XP rewards, stat tracking, etc.), listen for the result event on the client:
+
+```lua
+-- Fired on the searching player's client after a successful search
+AddEventHandler('pdd_advanced-worldsearch:client:SearchResult', function(data)
+    -- data.item    — item name
+    -- data.label   — item label
+    -- data.qty     — quantity awarded
+    -- data.illegal — boolean
+    -- data.prop    — prop model name
+end)
+```

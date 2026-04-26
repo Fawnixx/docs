@@ -1,0 +1,37 @@
+---
+title: "Commands"
+description: "Available commands in PDD Advanced WorldSearch."
+---
+
+## Player Commands
+
+There are no player-facing commands. Players interact with searchable props directly using the configured target system (ox_target, qb-target, ox_lib, or Text UI).
+
+---
+
+## Admin Commands
+
+| Command | Description |
+|---|---|
+| `/searchadmin` | Open the admin tablet (Prop Configuration page) |
+
+<Info>
+  The command name is configurable via `Config.Command` in `config.lua`. Admin access is restricted to players with a license listed in `Config.Licenses`.
+</Info>
+
+---
+
+## Admin Panel Navigation
+
+Once inside the admin tablet:
+
+| Action | How |
+|---|---|
+| Open Global Settings | Gear icon (top-right of the Props page) |
+| Add a global prop | **Add Global Prop** button (Global Props tab) |
+| Add a unique prop | **Add Unique Prop** button (Unique Props tab) |
+| Edit a prop's loot table | **Edit Loot Table** button inside any prop editor modal |
+| Capture a live prop | **Aim & Select** button inside a Unique Prop modal |
+| View Search History | Global Settings → Search History → **View Log** |
+| Reset to factory defaults | Global Settings → Danger Zone → **Reset** |
+| Restart resource | Global Settings → Danger Zone → **Restart** |

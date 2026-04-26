@@ -1,0 +1,93 @@
+---
+title: "Configuration"
+description: "config.lua settings and the in-game admin panel."
+---
+
+## config.lua (Static Settings)
+
+These settings require a manual file edit and resource restart to apply. Everything else is handled in-game.
+
+### Debug
+
+```lua
+Config.Debug = false
+```
+
+Enable for verbose `[pdd_search] [DEBUG]` console output when troubleshooting. Always set `false` in production.
+
+---
+
+### Locale
+
+```lua
+Config.Locale = "en"
+```
+
+Options: `en`, `es`, `fr`, `de`, `it`, `ja`, `pt`, `ru`, `zh`, `ar`
+
+---
+
+### Admin Licenses
+
+```lua
+Config.Licenses = {
+    ["license:YOUR_LICENSE_HASH_HERE"] = true,
+}
+```
+
+Players with a matching license can access the admin panel via `/searchadmin`. Add multiple entries for multiple admins.
+
+To find your license hash, run in the server console:
+```
+print(GetPlayerIdentifierByType(source, 'license'))
+```
+
+---
+
+### Admin Command
+
+```lua
+Config.Command = "searchadmin"
+```
+
+The chat command used to open the admin tablet. Registered as a client command on resource start.
+
+---
+
+### Discord Webhook Logging
+
+```lua
+Config.UseDiscordLogs = false
+Config.DiscordWebhook  = ""
+```
+
+When `UseDiscordLogs` is `true`, successful search events are forwarded to the provided webhook URL via pdd_bridge for persistent audit logging.
+
+---
+
+## Runtime Config (In-Game Admin Panel)
+
+All of the following are managed through the in-game admin panel at `/searchadmin` and saved automatically to `data/searchdata.json`:
+
+| Setting | Description |
+|---|---|
+| Target system | Interaction mode: `default`, `none`, `ox_lib`, `ox_target`, `qb-target` |
+| Draw distance | Range at which the Text UI prompt appears (Text UI mode only) |
+| Interact distance | How close a player must be to trigger the interaction |
+| Player cooldown | Minutes before the same player can re-search the same prop model |
+| Prop lock duration | Seconds a specific prop entity is locked server-wide after any search |
+| Search duration | Length of the search progress animation in milliseconds |
+| Default search radius | Default interaction radius — overridable per prop |
+| Empty search chance | Flat % chance of finding nothing regardless of loot table |
+| Dispatch alerts | Toggle illegal-item dispatch alerts on or off |
+| Prop catalog | Add, edit, enable/disable, or delete global props |
+| Loot tables | Per-prop weighted item pools with quantity ranges and illegal flags |
+| Unique props | Coordinate-pinned prop overrides with independent loot tables |
+
+<Info>
+  Target system changes require a resource restart. Use the **Restart Resource** button in the Danger Zone section of the admin panel — it saves your config and restarts automatically, reopening the UI on the Settings page.
+</Info>
+
+<Warning>
+  Do not manually edit `data/searchdata.json`. It is overwritten by the admin panel. Manual edits will be lost on the next save.
+</Warning>
