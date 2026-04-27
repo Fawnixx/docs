@@ -35,78 +35,83 @@
             ]
           },
           {
-            "group": "PDD Bridge",
-            "defaultOpen": false,
+            "group": "Scripts",
             "pages": [
-              "pdd-bridge/overview",
-              "pdd-bridge/installation",
-              "pdd-bridge/configuration",
-              "pdd-bridge/customization",
-              "pdd-bridge/ai-tts",
-              "pdd-bridge/exports"
-            ]
-          },
-          {
-            "group": "PDD Advanced AIServices",
-            "defaultOpen": false,
-            "pages": [
-              "pdd-advanced-aiservices/overview",
-              "pdd-advanced-aiservices/installation",
-              "pdd-advanced-aiservices/configuration",
-              "pdd-advanced-aiservices/services",
-              "pdd-advanced-aiservices/commands",
-              "pdd-advanced-aiservices/customization",
-              "pdd-advanced-aiservices/faq"
-            ]
-          },
-          {
-            "group": "PDD Advanced Crafting",
-            "defaultOpen": false,
-            "pages": [
-              "pdd-advanced-crafting/overview",
-              "pdd-advanced-crafting/installation",
-              "pdd-advanced-crafting/configuration",
-              "pdd-advanced-crafting/admin-panel",
-              "pdd-advanced-crafting/recipes",
-              "pdd-advanced-crafting/xp-progression",
-              "pdd-advanced-crafting/portable-benches",
-              "pdd-advanced-crafting/faq"
-            ]
-          },
-          {
-            "group": "PDD Advanced Elevators",
-            "defaultOpen": false,
-            "pages": [
-              "pdd-advanced-elevators/overview",
-              "pdd-advanced-elevators/installation",
-              "pdd-advanced-elevators/configuration",
-              "pdd-advanced-elevators/google-tts",
-              "pdd-advanced-elevators/customization",
-              "pdd-advanced-elevators/faq"
-            ]
-          },
-          {
-            "group": "PDD Advanced Loyalty",
-            "defaultOpen": false,
-            "pages": [
-              "pdd-advanced-loyalty/overview",
-              "pdd-advanced-loyalty/installation",
-              "pdd-advanced-loyalty/configuration",
-              "pdd-advanced-loyalty/commands",
-              "pdd-advanced-loyalty/faq"
-            ]
-          },
-          {
-            "group": "PDD Advanced WorldSearch",
-            "defaultOpen": false,
-            "pages": [
-              "pdd-advanced-worldsearch/overview",
-              "pdd-advanced-worldsearch/installation",
-              "pdd-advanced-worldsearch/configuration",
-              "pdd-advanced-worldsearch/props",
-              "pdd-advanced-worldsearch/commands",
-              "pdd-advanced-worldsearch/customization",
-              "pdd-advanced-worldsearch/faq"
+              {
+                "group": "PDD Bridge",
+                "expanded": false,
+                "pages": [
+                  "pdd-bridge/overview",
+                  "pdd-bridge/installation",
+                  "pdd-bridge/configuration",
+                  "pdd-bridge/customization",
+                  "pdd-bridge/ai-tts",
+                  "pdd-bridge/exports"
+                ]
+              },
+              {
+                "group": "PDD Advanced AIServices",
+                "expanded": false,
+                "pages": [
+                  "pdd-advanced-aiservices/overview",
+                  "pdd-advanced-aiservices/installation",
+                  "pdd-advanced-aiservices/configuration",
+                  "pdd-advanced-aiservices/services",
+                  "pdd-advanced-aiservices/commands",
+                  "pdd-advanced-aiservices/customization",
+                  "pdd-advanced-aiservices/faq"
+                ]
+              },
+              {
+                "group": "PDD Advanced Crafting",
+                "expanded": false,
+                "pages": [
+                  "pdd-advanced-crafting/overview",
+                  "pdd-advanced-crafting/installation",
+                  "pdd-advanced-crafting/configuration",
+                  "pdd-advanced-crafting/admin-panel",
+                  "pdd-advanced-crafting/recipes",
+                  "pdd-advanced-crafting/xp-progression",
+                  "pdd-advanced-crafting/portable-benches",
+                  "pdd-advanced-crafting/faq"
+                ]
+              },
+              {
+                "group": "PDD Advanced Elevators",
+                "expanded": false,
+                "pages": [
+                  "pdd-advanced-elevators/overview",
+                  "pdd-advanced-elevators/installation",
+                  "pdd-advanced-elevators/configuration",
+                  "pdd-advanced-elevators/google-tts",
+                  "pdd-advanced-elevators/customization",
+                  "pdd-advanced-elevators/faq"
+                ]
+              },
+              {
+                "group": "PDD Advanced Loyalty",
+                "expanded": false,
+                "pages": [
+                  "pdd-advanced-loyalty/overview",
+                  "pdd-advanced-loyalty/installation",
+                  "pdd-advanced-loyalty/configuration",
+                  "pdd-advanced-loyalty/commands",
+                  "pdd-advanced-loyalty/faq"
+                ]
+              },
+              {
+                "group": "PDD Advanced WorldSearch",
+                "expanded": false,
+                "pages": [
+                  "pdd-advanced-worldsearch/overview",
+                  "pdd-advanced-worldsearch/installation",
+                  "pdd-advanced-worldsearch/configuration",
+                  "pdd-advanced-worldsearch/props",
+                  "pdd-advanced-worldsearch/commands",
+                  "pdd-advanced-worldsearch/customization",
+                  "pdd-advanced-worldsearch/faq"
+                ]
+              }
             ]
           }
         ]
